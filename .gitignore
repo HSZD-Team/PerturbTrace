@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.DS_Store
+Chef_Harness/.chef/
+benchmarks/bdabench/baselines/harness_runs/**
+!benchmarks/bdabench/baselines/harness_runs/.gitkeep

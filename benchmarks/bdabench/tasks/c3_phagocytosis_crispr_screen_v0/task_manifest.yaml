@@ -1,0 +1,83 @@
+﻿task_id: C3_phagocytosis_crispr_screen_v0
+source_id: S27_haney_phagocytosis_crispr
+title: Haney phagocytosis CRISPR knockout screen
+classification:
+  primary_class: C3_feedback_decision_agent
+  scientific_decision_object: next_round_perturbation_selection
+  autonomy_level: closed_loop_decision_maker
+data:
+  data_name: S27_haney_phagocytosis_crispr
+  candidate_table: BDAbench/tasks/c3_phagocytosis_crispr_screen_v0/hidden/oracle_scores.csv
+  hit_set: BDAbench/tasks/c3_phagocytosis_crispr_screen_v0/hidden/hit_set.npy
+  public_candidate_actions: BDAbench/tasks/c3_phagocytosis_crispr_screen_v0/public/candidate_actions.csv
+  public_task_brief: BDAbench/tasks/c3_phagocytosis_crispr_screen_v0/public_task_brief.md
+  full_provenance: BDAbench/tasks/c3_phagocytosis_crispr_screen_v0/provenance/full_provenance.md
+  candidate_id_column: action_id
+  score_column: score
+  candidate_count_verified: 20398
+  hit_count_verified: 260
+  normalization:
+    input_table: BDAbench/data_sources/raw_external/S27_haney_phagocytosis_crispr/haney_orcs_screen1140_phagocytosis_castle.csv
+    matrix_mode: long
+    context_key: BioGRID_ORCS_Screen_1140_Haney_phagocytosis_CasTLE
+    action_column: gene
+    score_column: score
+    hit_column: hit_value
+    score_sign: as_is
+    hit_mode: threshold_gt
+    hit_percent: 5.0
+    hit_threshold: 21.2
+hidden_oracle:
+  type: action_score_table
+  default_hit_rule: genes with CasTLE score above the frozen threshold
+  oracle_score: CasTLE score for phagocytosis regulator effect
+  dataset_identity_hidden: true
+public_action_space:
+  visibility: public_ids
+  delivery: artifact_reference
+task_semantics:
+  agent_safe_brief: Select gene knockouts likely to alter a private phagocytosis phenotype.
+  biological_system: immune-cell phagocytosis model
+  perturbation_operation: gene knockout
+  action_type: gene
+  readout: magnetic-selection phagocytosis phenotype
+  feedback_value: tested gene phagocytosis score
+budget:
+  rounds: 5
+  batch_size: 128
+  total_slots: 640
+feedback_policies:
+- true_feedback
+- no_feedback
+- random_feedback
+- stale_feedback
+metrics:
+  primary:
+  - top_effect_recall
+  - auc_hdc
+  - feedback_delta_auc
+  process:
+  - invalid_action_rate
+  - duplicate_action_rate
+  - parse_failure_count
+  - batch_fill_failure_rate
+  - trace_completeness
+leakage_controls:
+  oracle_mode: external_hidden_oracle
+  forbidden_to_agent:
+  - hidden/oracle_scores.csv
+  - hidden/hit_set.npy
+  - source_id
+  - dataset_identity
+  - release_accession_or_result_handle
+  - untested_scores
+  - untested_ranks
+  - hit_threshold
+implementation_notes: Use the full-size BioGRID ORCS static screen table; public materials
+  hide screen identity, score table, threshold, and ranks.
+benchmark_selection:
+  status: active
+  rationale: selected_ok_in_phenotype_availability_sheet
+  updated_from_review: '2026-06-15'
+  role: excel_ok
+

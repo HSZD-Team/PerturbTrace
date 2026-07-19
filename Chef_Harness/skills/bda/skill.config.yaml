@@ -1,0 +1,52 @@
+# Chef_Harness-facing defaults for /bda.
+# Native Codex may ignore this file; keep SKILL.md self-contained.
+
+name: bda
+version: 0.1.0
+
+# Who executes this monitor skill (selector_harness).
+default_runtime: codex
+supported_runtimes:
+  - codex
+  - pi
+  - opencode
+
+# Monitor session model for Chef `codex exec` (do not inherit broken CLI defaults).
+monitor:
+  model: gpt-5.5
+  reasoning_effort: high
+
+# Deterministic eval engine behind the monitor.
+benchmark: bdabench
+
+# Relative to Chef_Harness/ (this product root), unless overridden at launch.
+package_root: ../benchmarks/bdabench
+
+defaults:
+  task_slug: c3_cart_crispra_exhaustion_feedback_decision_v0
+  task_profile: tasks/c3_cart_crispra_exhaustion_feedback_decision_v0/task_manifest.yaml
+  strategy_version: bda_skill_v0
+  output_dir: baselines/harness_runs/bda_skill_v0
+  feedback_policy: true_feedback
+  finalize_allow_incomplete: false
+  max_repairs_per_round: 6
+  # Solver transport (owned by monitor runtime, not harness core).
+  solver:
+    transport: codex_app_session
+    model: gpt-5.5
+    reasoning_effort: xhigh
+    use_project: false
+    use_exec: false
+    one_continuous_conversation_per_run: true
+
+# Default solver strategy skill (solver-facing, not this monitor skill).
+# Override at launch when comparing strategies.
+solver_skill: solver_skills/restricted-clean-gene-screen
+
+# After a successful run, Chef/Codex should call skills/bda-viz.
+post_run_skill: bda-viz
+
+slash:
+  aliases:
+    - /bda
+    - $bda

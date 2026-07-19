@@ -1,0 +1,90 @@
+﻿task_id: C3_nk_cell_exposure_crispr_v0
+source_id: S26_zhuang_nk_cell_crispr
+title: Zhuang NK-cell exposure CRISPR knockout screen
+classification:
+  primary_class: C3_feedback_decision_agent
+  scientific_decision_object: next_round_perturbation_selection
+  autonomy_level: closed_loop_decision_maker
+data:
+  data_name: S26_zhuang_nk_cell_crispr
+  candidate_table: BDAbench/tasks/c3_nk_cell_exposure_crispr_v0/hidden/oracle_scores.csv
+  hit_set: BDAbench/tasks/c3_nk_cell_exposure_crispr_v0/hidden/hit_set.npy
+  public_candidate_actions: BDAbench/tasks/c3_nk_cell_exposure_crispr_v0/public/candidate_actions.csv
+  public_task_brief: BDAbench/tasks/c3_nk_cell_exposure_crispr_v0/public_task_brief.md
+  full_provenance: BDAbench/tasks/c3_nk_cell_exposure_crispr_v0/provenance/full_provenance.md
+  candidate_id_column: action_id
+  score_column: score
+  candidate_count_verified: 20617
+  hit_count_verified: 1031
+  normalization:
+    input_table: BDAbench/data_sources/raw_external/S26_zhuang_nk_cell_crispr/zhuang_orcs_screen1081_nk_cell_mageck.csv
+    matrix_mode: long
+    context_key: BioGRID_ORCS_Screen_1081_Zhuang_NK_cell_exposure_MaGeCK
+    action_column: gene
+    score_column: score
+    hit_column: ''
+    score_sign: as_is
+    hit_mode: top_sensitive_score_percent
+    hit_percent: 5.0
+    hit_threshold: null
+    direction: sensitive
+    direction_rule: lower MaGeCK beta score is treated as greater sensitivity under
+      NK-cell exposure
+hidden_oracle:
+  type: action_score_table
+  default_hit_rule: top 5 percent sensitive-direction hits by lowest NK-exposure MaGeCK
+    beta score
+  oracle_score: gene-level NK-exposure sensitivity score; lower raw MaGeCK beta indicates
+    stronger sensitive-direction effect
+  dataset_identity_hidden: true
+public_action_space:
+  visibility: public_ids
+  delivery: artifact_reference
+task_semantics:
+  agent_safe_brief: Select gene knockouts likely to make cancer cells more sensitive
+    under a private immune-cell exposure phenotype.
+  biological_system: cancer cells exposed to activated natural killer cells
+  perturbation_operation: gene knockout
+  action_type: gene
+  readout: cancer-cell sensitivity under NK-cell exposure
+  feedback_value: tested gene NK-exposure sensitivity score
+budget:
+  rounds: 5
+  batch_size: 128
+  total_slots: 640
+feedback_policies:
+- true_feedback
+- no_feedback
+- random_feedback
+- stale_feedback
+metrics:
+  primary:
+  - top_effect_recall
+  - auc_hdc
+  - feedback_delta_auc
+  process:
+  - invalid_action_rate
+  - duplicate_action_rate
+  - parse_failure_count
+  - batch_fill_failure_rate
+  - trace_completeness
+leakage_controls:
+  oracle_mode: external_hidden_oracle
+  forbidden_to_agent:
+  - hidden/oracle_scores.csv
+  - hidden/hit_set.npy
+  - source_id
+  - dataset_identity
+  - release_accession_or_result_handle
+  - untested_scores
+  - untested_ranks
+  - hit_threshold
+implementation_notes: Benchmark keeps only the sensitive direction for this source;
+  hits are the top 5 percent by lowest MaGeCK beta score. Resistance direction is
+  not mixed into this task.
+benchmark_selection:
+  status: active
+  rationale: selected_ok_in_phenotype_availability_sheet
+  updated_from_review: '2026-06-15'
+  role: excel_ok
+

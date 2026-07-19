@@ -1,0 +1,14 @@
+name: bda-viz
+version: 0.1.0
+description: Local HTML visualizer for BDAbench harness run_root artifacts
+
+entrypoint: scripts/render_report.py
+default_output_name: report.html
+
+slash:
+  aliases:
+    - /bda-viz
+    - $bda-viz
+
+# Chef_Harness: after a successful /bda run, render the report automatically.
+auto_after_bda: true
