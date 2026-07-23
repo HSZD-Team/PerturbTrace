@@ -1,6 +1,6 @@
-# SciLoopBench
+# PerturbTrace
 
-Benchmarking AI Co-Scientists for Closed-Loop Scientific Decision-Making.
+Evaluating Feedback Use by AI Co-Scientist Agents in Perturbation Discovery
 
 ## What's in this repo
 
