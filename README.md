@@ -6,8 +6,8 @@ Evaluating Feedback Use by AI Co-Scientist Agents in Perturbation Discovery
 
 | Path | Description |
 |---|---|
-| [`benchmarks/bdabench/`](./benchmarks/bdabench/) | Hidden-oracle tasks + decoupled evaluation harness |
-| [`Chef_Harness/`](./Chef_Harness/) | Local launcher + skills (`bda`, `bda-viz`) |
+| [`benchmarks/bdabench/`](./benchmarks/bdabench/) | PerturbTraceBench |
+| [`Chef_Harness/`](./Chef_Harness/) | PerturbTrace Framework |
 
 ![PerturbTrace Framework](./Chef_Harness/docs/chef_harness_architecture.png)
 
