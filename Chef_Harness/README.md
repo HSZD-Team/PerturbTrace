@@ -1,13 +1,13 @@
 # Chef_Harness
 
-Local launcher for SciLoopBench BDAbench evaluations.
+Local launcher for PerturbTrace BDAbench evaluations.
 
 Chef starts a **monitor** session (default runtime: Codex), drives the portable BDAbench decoupled harness CLI, then recovers `run_root` and renders an HTML report via `bda-viz`.
 
 ## Layout
 
 ```text
-SciLoopBench/
+PerturbTrace/
   benchmarks/bdabench/     # portable BDAbench engine + tasks
   Chef_Harness/            # this folder
     chef_harness/          # Python CLI package
@@ -27,7 +27,7 @@ SciLoopBench/
 
 ## Install
 
-From this directory (`SciLoopBench/Chef_Harness`):
+From this directory (`PerturbTrace/Chef_Harness`):
 
 ```bash
 python -m pip install -e .
@@ -47,7 +47,7 @@ python -m chef_harness --help
 Unless noted otherwise, run these from:
 
 ```text
-SciLoopBench/Chef_Harness
+PerturbTrace/Chef_Harness
 ```
 
 ### 1) Dry-run (no Codex call)
@@ -124,7 +124,7 @@ You can run BDAbench without the `chef` CLI by installing the `bda` skill into C
 
 #### 1) Link the skill into Codex
 
-From `SciLoopBench/Chef_Harness`:
+From `PerturbTrace/Chef_Harness`:
 
 ```bash
 # recommended for Codex CLI / app skill discovery
@@ -156,9 +156,9 @@ Example smoke (1 round) — Chinese:
 ```text
 $bda 用 decoupled harness 演示一个 1-run 实际评测流程。
 task 选 c3_cart_crispra_exhaustion_feedback_decision_v0。
-monitor 必须用本地 shell，在 /ABS/PATH/to/SciLoopBench/benchmarks/bdabench 下调用 PYTHONPATH=. python -m BDAbench.baselines.harness.cli。
+monitor 必须用本地 shell，在 /ABS/PATH/to/PerturbTrace/benchmarks/bdabench 下调用 PYTHONPATH=. python -m BDAbench.baselines.harness.cli。
 solver 用 Codex 新线程，模型 gpt-5.5，reasoning xhigh；solver 不使用项目；solver 不要用 codex exec 启动。
-solver_skill=/ABS/PATH/to/SciLoopBench/Chef_Harness/solver_skills/restricted-clean-gene-screen
+solver_skill=/ABS/PATH/to/PerturbTrace/Chef_Harness/solver_skills/restricted-clean-gene-screen
 允许 finalize --allow-incomplete（完成第 1 轮即可）。
 跑完后回报 run_root、RUN_SUMMARY 摘要，并调用 $bda-viz 生成 report.html。
 ```
@@ -168,9 +168,9 @@ Example smoke (1 round) — English:
 ```text
 $bda Use the decoupled harness to demonstrate a 1-run evaluation.
 task: c3_cart_crispra_exhaustion_feedback_decision_v0
-monitor must use local shell and run PYTHONPATH=. python -m BDAbench.baselines.harness.cli under /ABS/PATH/to/SciLoopBench/benchmarks/bdabench.
+monitor must use local shell and run PYTHONPATH=. python -m BDAbench.baselines.harness.cli under /ABS/PATH/to/PerturbTrace/benchmarks/bdabench.
 solver: open a new Codex thread with model gpt-5.5 and reasoning xhigh; solver must not use project; solver must not be launched via codex exec.
-solver_skill=/ABS/PATH/to/SciLoopBench/Chef_Harness/solver_skills/restricted-clean-gene-screen
+solver_skill=/ABS/PATH/to/PerturbTrace/Chef_Harness/solver_skills/restricted-clean-gene-screen
 Allow finalize --allow-incomplete (finishing round 1 is enough).
 When done, report run_root, a RUN_SUMMARY summary, and call $bda-viz to generate report.html.
 ```
@@ -179,9 +179,9 @@ Example full run (all rounds) — Chinese:
 
 ```text
 $bda 对 task=c3_il2_feedback_decision_v0 跑完整 BDAbench 评测（全部 rounds）。
-monitor 必须用本地 shell，在 /ABS/PATH/to/SciLoopBench/benchmarks/bdabench 下调用 PYTHONPATH=. python -m BDAbench.baselines.harness.cli。
+monitor 必须用本地 shell，在 /ABS/PATH/to/PerturbTrace/benchmarks/bdabench 下调用 PYTHONPATH=. python -m BDAbench.baselines.harness.cli。
 solver 用 Codex 新线程，模型 gpt-5.5，reasoning xhigh；solver 不使用项目；solver 不要用 codex exec 启动。
-solver_skill=/ABS/PATH/to/SciLoopBench/Chef_Harness/solver_skills/restricted-clean-gene-screen
+solver_skill=/ABS/PATH/to/PerturbTrace/Chef_Harness/solver_skills/restricted-clean-gene-screen
 不要使用 --allow-incomplete。
 跑完后回报 run_root、RUN_SUMMARY 摘要，并调用 $bda-viz 生成 report.html。
 ```
@@ -190,14 +190,14 @@ Example full run (all rounds) — English:
 
 ```text
 $bda Run a full BDAbench evaluation for task=c3_il2_feedback_decision_v0 (all rounds).
-monitor must use local shell and run PYTHONPATH=. python -m BDAbench.baselines.harness.cli under /ABS/PATH/to/SciLoopBench/benchmarks/bdabench.
+monitor must use local shell and run PYTHONPATH=. python -m BDAbench.baselines.harness.cli under /ABS/PATH/to/PerturbTrace/benchmarks/bdabench.
 solver: open a new Codex thread with model gpt-5.5 and reasoning xhigh; solver must not use project; solver must not be launched via codex exec.
-solver_skill=/ABS/PATH/to/SciLoopBench/Chef_Harness/solver_skills/restricted-clean-gene-screen
+solver_skill=/ABS/PATH/to/PerturbTrace/Chef_Harness/solver_skills/restricted-clean-gene-screen
 Do not use --allow-incomplete.
 When done, report run_root, a RUN_SUMMARY summary, and call $bda-viz to generate report.html.
 ```
 
-Replace `/ABS/PATH/to/SciLoopBench/...` with your real absolute paths.
+Replace `/ABS/PATH/to/PerturbTrace/...` with your real absolute paths.
 
 #### 3) What you should get back
 

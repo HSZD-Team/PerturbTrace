@@ -6,7 +6,7 @@
 
 - [ ] 本机已安装并可打开 Codex（CLI 或 IDE）
 - [ ] 工作区能访问 portable 包：
-  `SciLoopBench/benchmarks/bdabench`
+  `PerturbTrace/benchmarks/bdabench`
 - [ ] Python 能在该包根目录执行：
   `python -m BDAbench.baselines.harness.cli --help`
 - [ ] 已准备好一个 **solver strategy skill** 目录（内含 `SKILL.md`）  
@@ -21,7 +21,7 @@
 
 ## 1. 安装 skill
 
-在仓库根目录 `25_SciLoopBench`：
+在仓库根目录 `PerturbTrace/Chef_Harness`：
 
 ```bash
 mkdir -p .agents/skills
@@ -45,7 +45,7 @@ ln -sfn "$(pwd)/skills/bda" ~/.agents/skills/bda
 
 1. 打开 Codex
 2. 把 cwd 设到：
-   `SciLoopBench/benchmarks/bdabench`
+   `PerturbTrace/benchmarks/bdabench`
 3. 输入 `/skills`（或等价技能列表）
 
 检查：
@@ -123,7 +123,7 @@ When done, report:
 ```
 
 工作目录请设为 / Set cwd to：
-`SciLoopBench/benchmarks/bdabench`
+`PerturbTrace/benchmarks/bdabench`
 （或在命令里 `cd` 到该目录后再跑 CLI / or `cd` there before running the CLI）。
 
 把 `<SOLVER_SKILL>` 换成真实绝对路径 / replace `<SOLVER_SKILL>` with a real absolute path。
@@ -158,7 +158,7 @@ When done, report:
 RUN_ROOT=<paste_run_root_here>
 ls "$RUN_ROOT"
 cat "$RUN_ROOT/RUN_SUMMARY.json"
-python /path/to/SciLoopBench/Chef_Harness/skills/bda/scripts/summarize_run.py "$RUN_ROOT"
+python /path/to/PerturbTrace/Chef_Harness/skills/bda/scripts/summarize_run.py "$RUN_ROOT"
 ```
 
 - [ ] 存在 `harness_config.json`、`skill_snapshot/SKILL.md`、`trace.jsonl`、`RUN_SUMMARY.json`

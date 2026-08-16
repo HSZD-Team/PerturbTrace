@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 def workspace_root() -> Path:
-    """Return the SciLoopBench workspace root (parent of chef_harness/)."""
+    """Return the PerturbTrace workspace root (parent of chef_harness/)."""
     return Path(__file__).resolve().parents[1]
 
 

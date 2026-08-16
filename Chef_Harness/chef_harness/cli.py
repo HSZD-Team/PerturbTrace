@@ -111,7 +111,7 @@ def _repl() -> int:
         if line.startswith("/bda") or line.startswith("$bda"):
             text = line.split(None, 1)[1] if len(line.split(None, 1)) > 1 else ""
             code = _launch_bda(
-                user_text=text or "帮我基于这个文件夹里的文件做一次基因筛选评测（1-run smoke）",
+                user_text=text or "Help me run a gene-screen evaluation based on the files in this folder (1-run smoke).",
                 smoke=True,
             )
             if code != 0:
@@ -155,9 +155,9 @@ def _cmd_run_bda(args: argparse.Namespace) -> int:
     if not user_text:
         task_label = args.task or "default task"
         if smoke is False:
-            user_text = f"请对 task={task_label} 跑完整 BDAbench 评测（全部 rounds）。"
+            user_text = f"Run a full BDAbench evaluation for task={task_label} (all rounds)."
         else:
-            user_text = f"请对 task={task_label} 做一次 BDAbench 1-run smoke 评测。"
+            user_text = f"Run a BDAbench 1-run smoke evaluation for task={task_label}."
     solver_skill = (
         resolve_workspace_path(args.solver_skill) if args.solver_skill else None
     )

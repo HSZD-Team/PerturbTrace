@@ -135,34 +135,34 @@ def _render_prompt(
     solver_effort: str,
 ) -> str:
     smoke_line = (
-        "允许 finalize --allow-incomplete（完成第 1 轮交卷即可）。"
+        "Allow finalize --allow-incomplete (finishing round-1 submission is enough)."
         if smoke
-        else "尽量跑完 task 全部 rounds；不要使用 --allow-incomplete，除非 process 失败需要止损。"
+        else "Run all task rounds; do not use --allow-incomplete unless process-response fails and you must stop."
     )
     return f"""$bda
 
-你现在是 eval monitor。先阅读 skill 文件：
+You are the eval monitor. First read the skill file:
 {skill_md}
 
-以及同目录 references/。
+and the references/ in the same directory.
 
-## 用户请求
+## User request
 {user_text.strip()}
 
-## Chef_Harness 启动参数（请遵守）
+## Chef_Harness launch parameters (follow these)
 - package_root / cwd: {package_root}
 - task: {task_slug}
 - task_profile: {task_profile}
 - solver_skill: {solver_skill}
 - strategy_version: {strategy_version}
 - output_dir: {output_dir}
-- monitor：必须用本地 shell 调用 `PYTHONPATH=. python -m BDAbench.baselines.harness.cli ...`
-- solver：开 Codex 新线程/新任务，模型 {solver_model}，reasoning {solver_effort}；solver 不使用项目；solver 不要用 `codex exec` 启动
+- monitor: must use a local shell to run `PYTHONPATH=. python -m BDAbench.baselines.harness.cli ...`
+- solver: open a new Codex thread/task with model {solver_model} and reasoning {solver_effort}; solver must not use a project; solver must not be launched via `codex exec`
 - {smoke_line}
 
-## 完成标准
-跑通 init-run → prepare-round → solver → process-response → finalize-run。
-最终回复必须包含：
+## Done criteria
+Complete init-run → prepare-round → solver → process-response → finalize-run.
+The final reply must include:
 
 ```text
 run_root: <absolute path>

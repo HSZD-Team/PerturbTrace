@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "chef-harness"
 version = "0.1.0"
-description = "Chef_Harness — local skill launcher for SciLoopBench / BDAbench evals"
+description = "Chef_Harness — local skill launcher for PerturbTrace / BDAbench evals"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
