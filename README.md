@@ -37,9 +37,9 @@ Evaluating Feedback Use by AI Co-Scientist Agents in Perturbation Discovery
 
 Install: [`Chef_Harness/README.md`](./Chef_Harness/README.md).
 
-<video src="./Chef_Harness/docs/chef-run-bda-c3-il2-full.mp4" controls width="100%"></video>
+Demo:
 
-[Watch a full 5-round run of `c3_il2_feedback_decision_v0`](./Chef_Harness/docs/chef-run-bda-c3-il2-full.mp4)
+https://github.com/user-attachments/assets/74e4251f-cae6-4e14-bbf7-c236d2bef658
 
 ## License
 
