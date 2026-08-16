@@ -4,18 +4,14 @@ Evaluating Feedback Use by AI Co-Scientist Agents in Perturbation Discovery
 
 ## What's in this repo
 
-| Path | Description |
-|---|---|
-| [`benchmarks/bdabench/`](./benchmarks/bdabench/) | PerturbTraceBench |
-| [`Chef_Harness/`](./Chef_Harness/) | PerturbTrace Framework |
+| Name | Path | Description |
+|---|---|---|
+| PerturbTraceBench | [`benchmarks/bdabench/`](./benchmarks/bdabench/) | benchmark test cases |
+| PerturbTrace Framework | [`Chef_Harness/`](./Chef_Harness/) | local launcher harness |
 
 ![PerturbTrace Framework](./Chef_Harness/docs/chef_harness_architecture.png)
 
-## BDAbench
-
-Each task keeps ground truth inside a hidden oracle. The solver only sees the public brief, the candidate list, and the observations the harness is allowed to return after each batch.
-
-Typical protocol: **5 rounds**, a fixed batch size (often 128 genes), then metrics such as top-effect recall plus a leakage audit. Feedback can be `true_feedback`, `no_feedback`, `random_feedback`, or `stale_feedback`.
+## PerturbTraceBench
 
 | Task | Screen | Action |
 |---|---|---|
@@ -39,7 +35,7 @@ Typical protocol: **5 rounds**, a fixed batch size (often 128 genes), then metri
 
 ## Chef_Harness
 
-Install and other tasks: [`Chef_Harness/README.md`](./Chef_Harness/README.md).
+Install: [`Chef_Harness/README.md`](./Chef_Harness/README.md).
 
 <video src="./Chef_Harness/docs/chef-run-bda-c3-il2-full.mp4" controls width="100%"></video>
 
