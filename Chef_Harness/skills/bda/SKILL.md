@@ -105,6 +105,27 @@ python "<workspace>/skills/bda-viz/scripts/render_report.py" "<run_root>"
 
 Include the printed `report.html` path in your final reply. If `bda-viz` is installed as a Codex skill, you may also `$bda-viz` with the same `run_root`.
 
+## Optional trace audit
+
+When the user explicitly asks to run trace evaluation after this completed
+run, invoke the sibling `perturbtrace-trace` skill only after `finalize-run`
+and `bda-viz` have completed successfully. This is an opt-in skill workflow;
+do not add a Chef command, modify the harness, or use any formal-run manifest.
+
+The trace manifest contains this run root only and is written into the
+caller-selected external trace output directory. Never write trace labels,
+judge logs, figures, or reports into `run_root` or the repository.
+
+For full Feedback-to-State, State-to-Action, and Action-to-Outcome scoring,
+the user must explicitly supply a `codebook_task_id` from
+`skills/perturbtrace-trace/protocol/module_codebooks_v1.json`. Do not infer it
+from the task name. Without it, run the trace skill only when the user accepts
+an explicit State-to-Action `unassessable` result.
+
+The default invocation uses one caller-specified `--judge-model` for both
+independent judge calls. Preserve `--judge-a-model` and `--judge-b-model` as
+optional overrides when the user requests an asymmetric model check.
+
 ## Final Reply Contract
 
 Always end with:
