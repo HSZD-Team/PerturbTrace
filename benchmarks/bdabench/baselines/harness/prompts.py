@@ -31,17 +31,11 @@ def _skill_block(skill: SkillBundle) -> str:
 
 
 def build_initial_prompt(config: HarnessConfig, skill: SkillBundle, state: RoundState) -> PromptPacket:
-    candidate_artifact = ""
-    if str(config.task_profile.candidate_delivery).lower() == "artifact_reference":
-        candidate_artifact = """# Candidate Artifact
-The identifiers-only public candidate artifact is available as `candidate_actions.csv` in the solver task directory.
-
-"""
     user_prompt = f"""# Initial Solver Prompt
 
 {build_public_task_brief(config.task_profile)}
 
-{candidate_artifact}{_skill_block(skill)}
+{_skill_block(skill)}
 
 # Current Run State
 - This is round {state.round_index + 1} of {config.task_profile.rounds}.
