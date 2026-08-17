@@ -9,6 +9,7 @@ from __future__ import annotations
 from .context import (
     build_public_task_brief,
     format_membership_for_solver,
+    format_no_feedback,
     format_observation_feedback,
     format_round_hit_feedback,
 )
@@ -30,11 +31,17 @@ def _skill_block(skill: SkillBundle) -> str:
 
 
 def build_initial_prompt(config: HarnessConfig, skill: SkillBundle, state: RoundState) -> PromptPacket:
+    candidate_artifact = ""
+    if str(config.task_profile.candidate_delivery).lower() == "artifact_reference":
+        candidate_artifact = """# Candidate Artifact
+The identifiers-only public candidate artifact is available as `candidate_actions.csv` in the solver task directory.
+
+"""
     user_prompt = f"""# Initial Solver Prompt
 
 {build_public_task_brief(config.task_profile)}
 
-{_skill_block(skill)}
+{candidate_artifact}{_skill_block(skill)}
 
 # Current Run State
 - This is round {state.round_index + 1} of {config.task_profile.rounds}.
@@ -58,12 +65,16 @@ def build_feedback_prompt(
     config: HarnessConfig,
     skill: SkillBundle,
     state: RoundState,
-    hit_set: set[str],
+    hit_set: set[str] | None,
 ) -> PromptPacket:
     feedback_style = str(config.task_profile.public_task_semantics.get("feedback_style", "hit_counts"))
-    if feedback_style == "tested_scores":
+    if config.feedback_policy == "no_feedback":
+        feedback = format_no_feedback(state.observations, config.task_profile.batch_size)
+    elif feedback_style == "tested_scores":
         feedback = format_observation_feedback(state.observations, config.task_profile.batch_size)
     else:
+        if hit_set is None:
+            raise ValueError("Hit-count feedback requires an explicit feedback hit set.")
         feedback = format_round_hit_feedback(state.observations, config.task_profile.batch_size, hit_set)
     user_prompt = f"""# Feedback Solver Prompt
 

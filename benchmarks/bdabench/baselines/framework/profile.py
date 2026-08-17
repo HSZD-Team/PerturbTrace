@@ -119,6 +119,20 @@ def _public_action_space_contract(data: dict[str, Any]) -> tuple[str, str]:
     return visibility, delivery
 
 
+def _resolve_declared_path(repo_root: Path, raw_path: str) -> Path:
+    raw = Path(raw_path)
+    if raw.is_absolute():
+        return raw.resolve()
+    candidates = [repo_root / raw]
+    if raw.parts and raw.parts[0] == "BDAbench":
+        candidates.append(repo_root / Path(*raw.parts[1:]))
+    candidates.append(repo_root.parent / raw)
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate.resolve()
+    return candidates[0].resolve()
+
+
 def load_task_profile(path: Path, repo_root: Path) -> TaskProfile:
     data = _load_profile_dict(path)
     if "paths" not in data and "data" in data:
@@ -152,10 +166,10 @@ def load_task_profile(path: Path, repo_root: Path) -> TaskProfile:
             task_id=data["task_id"],
             title=data.get("title", data["task_id"]),
             data_name=task_data["data_name"],
-            candidate_table=(repo_root / task_data["candidate_table"]).resolve(),
-            hit_set=(repo_root / task_data["hit_set"]).resolve(),
+            candidate_table=_resolve_declared_path(repo_root, task_data["candidate_table"]),
+            hit_set=_resolve_declared_path(repo_root, task_data["hit_set"]),
             public_candidate_table=(
-                (repo_root / task_data["public_candidate_actions"]).resolve()
+                _resolve_declared_path(repo_root, task_data["public_candidate_actions"])
                 if task_data.get("public_candidate_actions")
                 else None
             ),
@@ -182,10 +196,10 @@ def load_task_profile(path: Path, repo_root: Path) -> TaskProfile:
         task_id=data["task_id"],
         title=data.get("title", data["task_id"]),
         data_name=data["data_name"],
-        candidate_table=(repo_root / paths["candidate_table"]).resolve(),
-        hit_set=(repo_root / paths["hit_set"]).resolve(),
+        candidate_table=_resolve_declared_path(repo_root, paths["candidate_table"]),
+        hit_set=_resolve_declared_path(repo_root, paths["hit_set"]),
         public_candidate_table=(
-            (repo_root / paths["public_candidate_actions"]).resolve()
+            _resolve_declared_path(repo_root, paths["public_candidate_actions"])
             if paths.get("public_candidate_actions")
             else None
         ),

@@ -10,6 +10,7 @@ from typing import Any
 
 from BDAbench.baselines.framework.leakage import LeakageAuditor
 from BDAbench.baselines.framework.metrics import compute_run_metrics
+from BDAbench.baselines.framework.oracle import FEEDBACK_SEMANTICS, FEEDBACK_SEMANTICS_VERSION
 from BDAbench.baselines.framework.trace import TraceWriter
 from BDAbench.baselines.framework.types import ParsedActionBatch
 
@@ -39,6 +40,18 @@ def _load_harness(run_root: Path) -> RestrictedCleanHarness:
     config = _read_json(artifacts.harness_config, {})
     if not config:
         raise SystemExit(f"Missing harness_config.json in {run_root}")
+    if config.get("harness_version") != "decoupled-harness-v0.2":
+        raise SystemExit(
+            f"Run uses incompatible harness_version={config.get('harness_version')!r}; "
+            "initialize a new run root with decoupled-harness-v0.2."
+        )
+    if config.get("feedback_semantics_version") != FEEDBACK_SEMANTICS_VERSION:
+        raise SystemExit(
+            f"Run uses incompatible feedback semantics; initialize a new run root with "
+            f"{FEEDBACK_SEMANTICS_VERSION}."
+        )
+    if "feedback_seed" not in config:
+        raise SystemExit("Run has no persisted feedback_seed; initialize a new run root.")
     return RestrictedCleanHarness(
         repo_root=REPO_ROOT,
         task_profile_path=Path(config["task_profile_path"]),
@@ -46,6 +59,7 @@ def _load_harness(run_root: Path) -> RestrictedCleanHarness:
         run_id=config["run_id"],
         strategy_version=config["strategy_version"],
         feedback_policy=config.get("feedback_policy", "true_feedback"),
+        feedback_seed=config.get("feedback_seed"),
         web_search_enabled=config.get("web_search_enabled", True),
     )
 
@@ -99,6 +113,7 @@ def init_run(args: argparse.Namespace) -> None:
         run_id=args.run_id,
         strategy_version=args.strategy_version,
         feedback_policy=args.feedback_policy,
+        feedback_seed=args.feedback_seed,
         web_search_enabled=not args.no_web_search,
     )
     skill_snapshot = artifacts.skill_snapshot_dir
@@ -114,6 +129,9 @@ def init_run(args: argparse.Namespace) -> None:
         "strategy_version": args.strategy_version,
         "task_profile_path": str(Path(args.task_profile).resolve()),
         "feedback_policy": args.feedback_policy,
+        "feedback_seed": harness.config.feedback_seed,
+        "feedback_semantics_version": FEEDBACK_SEMANTICS_VERSION,
+        "feedback_semantics": FEEDBACK_SEMANTICS[args.feedback_policy],
         "web_search_enabled": not args.no_web_search,
         "harness_version": harness.config.harness_version,
         "skill_name": harness.skill.name,
@@ -265,6 +283,11 @@ def finalize_run(args: argparse.Namespace) -> None:
         "run_id": harness.config.run_id,
         "strategy_version": harness.config.strategy_version,
         "task_id": harness.config.task_profile.task_id,
+        "harness_version": harness.config.harness_version,
+        "feedback_policy": harness.config.feedback_policy,
+        "feedback_seed": harness.config.feedback_seed,
+        "feedback_semantics_version": FEEDBACK_SEMANTICS_VERSION,
+        "feedback_semantics": FEEDBACK_SEMANTICS[harness.config.feedback_policy],
         "rounds_submitted": len(batches),
         "expected_rounds": expected_rounds,
         "complete": len(batches) == expected_rounds,
@@ -308,6 +331,7 @@ def main() -> None:
     init_p.add_argument("--skill", required=True)
     init_p.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
     init_p.add_argument("--feedback-policy", choices=["true_feedback", "no_feedback", "random_feedback", "stale_feedback"], default="true_feedback")
+    init_p.add_argument("--feedback-seed", type=int)
     init_p.add_argument("--no-web-search", action="store_true")
     init_p.add_argument("--force", action="store_true")
     init_p.set_defaults(func=init_run)

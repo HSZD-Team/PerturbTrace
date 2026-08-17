@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from BDAbench.baselines.framework.actions import parse_actions_from_text, validate_action_batch
-from BDAbench.baselines.framework.oracle import PerturbationOracle
+from BDAbench.baselines.framework.oracle import PerturbationOracle, derive_feedback_seed
 from BDAbench.baselines.framework.profile import load_task_profile
 from BDAbench.baselines.framework.trace import TraceWriter
 from BDAbench.baselines.framework.types import FeedbackPolicy, Observation
@@ -47,6 +47,7 @@ class RestrictedCleanHarness:
         run_id: str,
         strategy_version: str,
         feedback_policy: FeedbackPolicy = "true_feedback",
+        feedback_seed: int | None = None,
         web_search_enabled: bool = True,
     ) -> None:
         profile = load_task_profile(task_profile_path, repo_root)
@@ -54,16 +55,20 @@ class RestrictedCleanHarness:
         audit = audit_skill_for_solver(skill, profile.forbidden_agent_inputs)
         if not audit.clean:
             raise ValueError(f"Skill failed solver-facing audit: {audit.issues}")
+        resolved_feedback_seed = derive_feedback_seed(run_id) if feedback_seed is None else feedback_seed
+        if resolved_feedback_seed < 0:
+            raise ValueError("feedback_seed must be non-negative.")
         self.config = HarnessConfig(
             task_profile=profile,
             run_id=run_id,
             strategy_version=strategy_version,
             feedback_policy=feedback_policy,
+            feedback_seed=resolved_feedback_seed,
             web_search_enabled=web_search_enabled,
         )
         self.skill = skill
         self.skill_audit = audit
-        self.oracle = PerturbationOracle(profile)
+        self.oracle = PerturbationOracle(profile, random_seed=resolved_feedback_seed)
 
     def round_state(self, round_index: int, observations: list[Observation]) -> RoundState:
         return RoundState(
@@ -75,7 +80,12 @@ class RestrictedCleanHarness:
     def build_round_prompt(self, round_index: int, observations: list[Observation]) -> PromptPacket:
         state = self.round_state(round_index, observations)
         if observations:
-            return build_feedback_prompt(self.config, self.skill, state, self.oracle.hit_set)
+            return build_feedback_prompt(
+                self.config,
+                self.skill,
+                state,
+                self.oracle.feedback_hit_set(self.config.feedback_policy),
+            )
         return build_initial_prompt(self.config, self.skill, state)
 
     def membership_check(self, raw_draft: str, observations: list[Observation]) -> MembershipResult:
