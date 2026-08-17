@@ -20,7 +20,6 @@ FEEDBACK_SEMANTICS = {
         "A fixed run-seeded permutation of the complete candidate action-to-outcome mapping; "
         "the global outcome distribution is preserved while action-outcome correspondence is broken."
     ),
-    "stale_feedback": "Previously observed outcomes are replayed against current submitted actions.",
 }
 
 
@@ -86,7 +85,6 @@ class PerturbationOracle:
         actions: Iterable[str],
         feedback_policy: FeedbackPolicy,
         round_index: int,
-        stale_observations: list[Observation] | None = None,
     ) -> list[Observation]:
         valid_actions = [action for action in actions if action in self._score_by_action]
         if feedback_policy == "no_feedback":
@@ -100,20 +98,6 @@ class PerturbationOracle:
                 )
                 for action in valid_actions
             ]
-        if feedback_policy == "stale_feedback" and stale_observations:
-            stale_by_idx = stale_observations[: len(valid_actions)]
-            result = []
-            for action, stale in zip(valid_actions, stale_by_idx):
-                result.append(
-                    Observation(
-                        tested_gene=action,
-                        score=stale.score,
-                        absolute_effect=stale.absolute_effect,
-                        score_semantics=stale.score_semantics,
-                        feedback_policy=feedback_policy,
-                    )
-                )
-            return result
         if feedback_policy == "random_feedback":
             scores = [float(self._random_score_by_action[action]) for action in valid_actions]
         else:

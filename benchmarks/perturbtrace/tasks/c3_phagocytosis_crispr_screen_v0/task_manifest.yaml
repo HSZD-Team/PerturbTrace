@@ -50,7 +50,6 @@ feedback_policies:
 - true_feedback
 - no_feedback
 - random_feedback
-- stale_feedback
 metrics:
   primary:
   - top_effect_recall
