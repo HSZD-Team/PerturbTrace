@@ -1,0 +1,109 @@
+{
+  "version": "task-modules-v1.0",
+  "frozen_date": "2026-07-20",
+  "annotation_source": "Public task briefs plus MyGene.info human gene names, summaries, and GO biological-process terms; hidden outcomes excluded.",
+  "thresholds": {
+    "minor_min_count": 1,
+    "major_min_count_for_batch_128": 13,
+    "unassessable_other_min_count_for_batch_128": 39
+  },
+  "tasks": {
+    "T02": {
+      "public_objective": "Gene activations that help cells resist exhaustion under a GD2 CAR condition.",
+      "modules": [
+        {"id": "tcell_state_transcription", "description": "T-cell differentiation, memory/exhaustion state and lineage transcription", "keywords": ["t cell differentiation", "t-cell differentiation", "memory t cell", "t cell activation", "lymphocyte differentiation", "exhaustion", "ap-1", "transcription factor", "cell fate"], "symbol_patterns": ["^(JUN|FOS|BATF|TCF7|LEF1|BACH2|FOXO|IKZF|RUNX|TBX21|EOMES|KLF)"]},
+        {"id": "cytokine_costimulation", "description": "Cytokine, chemokine and co-stimulatory receptor programs", "keywords": ["cytokine", "interleukin", "chemokine", "costimulatory", "co-stimulatory", "tumor necrosis factor", "immune receptor", "lymphocyte activation"], "symbol_patterns": ["^(IL[0-9]|CCR|CXCR|TNFRSF|TNFSF|CD27$|CD28$|ICOS)"]},
+        {"id": "antigen_receptor_signaling", "description": "CAR/TCR-proximal and intracellular immune signal tuning", "keywords": ["t cell receptor signaling", "antigen receptor", "protein kinase", "protein phosphatase", "signal transduction", "mapk cascade", "pi3k", "mtor signaling"], "symbol_patterns": ["^(LCK|ZAP70|LAT$|LCP2|ITK|PLCG1|PIK3|AKT|MAPK|MAP2K|MTOR|PTPN|CBL)"]},
+        {"id": "survival_cell_death", "description": "Apoptosis, death-receptor and survival control", "keywords": ["apoptotic", "apoptosis", "programmed cell death", "cell survival", "death receptor", "anti-apoptotic"], "symbol_patterns": ["^(BCL2|BIRC|CASP|CFLAR|MCL1|XIAP|FAS)"]},
+        {"id": "proliferation_cell_cycle", "description": "Cell-cycle progression and proliferative competence", "keywords": ["cell cycle", "mitotic", "mitosis", "cell proliferation", "dna replication", "chromosome segregation"], "symbol_patterns": ["^(CDK|CCN[ABDE]|CDC|E2F|MCM|AURK|PLK|FOXM1|MKI67)"]},
+        {"id": "metabolism_mitochondria", "description": "Nutrient use, bioenergetics and mitochondrial fitness", "keywords": ["metabolic process", "mitochond", "glycolysis", "fatty acid", "amino acid", "oxidative phosphorylation", "respiratory chain", "nad biosynthesis"], "symbol_patterns": ["^(SLC|CPT|ACAD|NDUF|ATP5|SDH|IDH|LDH|HK|PFK|GLS|SIRT|PPARGC|TFAM)"]},
+        {"id": "stress_redox_proteostasis", "description": "Oxidative stress, chaperones and proteostasis", "keywords": ["oxidative stress", "response to stress", "protein folding", "chaperone", "unfolded protein", "reactive oxygen", "proteasome"], "symbol_patterns": ["^(HSP|DNAJ|SOD|GPX|PRDX|TXN|GCL|NFE2L|PSM)"]},
+        {"id": "autophagy_lysosome", "description": "Autophagy, mitophagy and lysosomal programs", "keywords": ["autophagy", "lysosome", "lysosomal", "mitophagy", "autophagosome"], "symbol_patterns": ["^(ATG|BECN|ULK|LAMP|TFEB|TFE3|PINK1|PRKN|SQSTM)"]},
+        {"id": "trafficking_adhesion_cytoskeleton", "description": "Migration, adhesion, membrane traffic and cytoskeleton", "keywords": ["cell adhesion", "cell migration", "cytoskeleton", "vesicle-mediated transport", "membrane trafficking", "endocytosis", "integrin"], "symbol_patterns": ["^(ITGA|ITGB|ICAM|RAB|VAMP|ARF|ACT|MYO)"]},
+        {"id": "chromatin_gene_regulation", "description": "Chromatin, epigenetic and general gene-regulatory machinery", "keywords": ["chromatin", "histone", "epigenetic", "transcription regulation", "rna polymerase", "dna methylation"], "symbol_patterns": ["^(KDM|KMT|HDAC|HIST|SMAR|ARID|EZH|DNMT|BRD)"]},
+        {"id": "other_uncertain", "description": "No reliable primary assignment", "keywords": [], "symbol_patterns": []}
+      ]
+    },
+    "T03": {
+      "public_objective": "Gene knockouts likely to alter a private engineered immune-cell exposure phenotype.",
+      "modules": [
+        {"id": "antigen_presentation_interferon", "description": "MHC/antigen processing and interferon response", "keywords": ["antigen processing", "antigen presentation", "major histocompatibility", "interferon", "mhc class", "peptide loading"], "symbol_patterns": ["^(HLA|B2M$|TAP|TAPBP|NLRC5|CIITA|JAK|STAT1$|IRF)"]},
+        {"id": "death_execution_survival", "description": "Death receptor, apoptosis and survival", "keywords": ["apoptotic", "apoptosis", "cell death", "death receptor", "cell survival", "necroptosis", "pyroptosis"], "symbol_patterns": ["^(BCL2|BIRC|CASP|FAS|TNFRSF10|RIPK|MLKL|GSDM|CFLAR)"]},
+        {"id": "immune_synapse_surface_ligands", "description": "Immune-recognition ligands, checkpoints and synapse", "keywords": ["immune synapse", "cell-cell recognition", "immune receptor", "checkpoint", "natural killer cell", "t cell mediated cytotoxicity", "cell surface receptor"], "symbol_patterns": ["^(CD[0-9]|PVR|NECTIN|ICAM|MICA|MICB|ULBP|PDL|CD274|CMTM)"]},
+        {"id": "cytokine_innate_inflammation", "description": "Cytokine, TNF/NF-kB and innate inflammatory signaling", "keywords": ["cytokine", "inflammatory response", "innate immune", "tumor necrosis factor", "nf-kappa", "pattern recognition receptor"], "symbol_patterns": ["^(IL[0-9]|TNF|TNFR|NFKB|TRAF|TLR|MYD88|MAVS|STING|TMEM173)"]},
+        {"id": "growth_signal_transduction", "description": "Growth-factor, MAPK, PI3K and related signaling", "keywords": ["signal transduction", "protein kinase", "growth factor", "mapk cascade", "pi3k", "ras protein signal"], "symbol_patterns": ["^(MAPK|MAP2K|MAP3K|PIK3|AKT|RAF|RAS|PTPN|FGFR|EGFR)"]},
+        {"id": "adhesion_trafficking_cytoskeleton", "description": "Adhesion, membrane traffic and cytoskeletal interaction", "keywords": ["cell adhesion", "cytoskeleton", "vesicle-mediated transport", "membrane trafficking", "endocytosis", "integrin"], "symbol_patterns": ["^(ITGA|ITGB|RAB|ARF|VAMP|ACT|MYO|ESCRT|CHMP)"]},
+        {"id": "chromatin_lineage_transcription", "description": "Chromatin and lineage/gene-state regulation", "keywords": ["chromatin", "histone", "transcription factor", "cell differentiation", "epigenetic", "gene expression"], "symbol_patterns": ["^(KDM|KMT|HDAC|HIST|SMAR|ARID|EZH|SOX|GATA|RUNX)"]},
+        {"id": "stress_autophagy_proteostasis", "description": "Stress defense, autophagy, lysosome and proteostasis", "keywords": ["response to stress", "autophagy", "lysosome", "protein folding", "proteasome", "oxidative stress", "unfolded protein"], "symbol_patterns": ["^(ATG|BECN|ULK|LAMP|HSP|DNAJ|PSM|NFE2L|SOD|GPX)"]},
+        {"id": "metabolism_mitochondria", "description": "Metabolism and mitochondrial function", "keywords": ["metabolic process", "mitochond", "glycolysis", "fatty acid", "amino acid", "oxidative phosphorylation"], "symbol_patterns": ["^(SLC|NDUF|ATP5|SDH|IDH|LDH|HK|PFK|CPT|ACAD)"]},
+        {"id": "cell_cycle_dna_repair", "description": "Cell cycle, genome maintenance and DNA repair", "keywords": ["cell cycle", "mitotic", "dna replication", "dna repair", "chromosome segregation", "dna damage"], "symbol_patterns": ["^(CDK|CCN[ABDE]|CDC|MCM|RAD|BRCA|FAN|CHEK|AURK|PLK)"]},
+        {"id": "other_uncertain", "description": "No reliable primary assignment", "keywords": [], "symbol_patterns": []}
+      ]
+    },
+    "T07": {
+      "public_objective": "Gene knockouts likely to strongly affect a private selectable human-cell phenotype.",
+      "modules": [
+        {"id": "cell_cycle_mitosis", "description": "Cell-cycle and mitotic machinery", "keywords": ["cell cycle", "mitotic", "mitosis", "chromosome segregation", "spindle", "cytokinesis"], "symbol_patterns": ["^(CDK|CCN[ABDE]|CDC|AURK|PLK|CENP|KIF|MKI67)"]},
+        {"id": "dna_replication_repair", "description": "DNA replication, repair and genome stability", "keywords": ["dna replication", "dna repair", "dna damage", "genome stability", "double-strand break", "replication fork"], "symbol_patterns": ["^(MCM|POL[ADEN]|RAD|BRCA|FAN|CHEK|ATM$|ATR$|PARP)"]},
+        {"id": "transcription_chromatin", "description": "Transcription and chromatin regulation", "keywords": ["transcription", "chromatin", "histone", "epigenetic", "rna polymerase", "dna methylation"], "symbol_patterns": ["^(POLR|MED|TAF|KDM|KMT|HDAC|HIST|SMAR|ARID|EZH)"]},
+        {"id": "rna_splicing_translation", "description": "RNA processing, ribosome and translation", "keywords": ["rna splicing", "mrna processing", "ribosome", "translation", "rna binding", "ribosomal"], "symbol_patterns": ["^(RPL|RPS|MRPL|MRPS|SRSF|HNRNP|DDX|EIF|EFT|SF3)"]},
+        {"id": "proteostasis_ubiquitin", "description": "Proteasome, ubiquitin and protein quality control", "keywords": ["proteasome", "ubiquitin", "protein folding", "protein degradation", "unfolded protein", "chaperone"], "symbol_patterns": ["^(PSM|UBE|UBR|CUL|HSP|DNAJ|VCP$)"]},
+        {"id": "metabolism_mitochondria", "description": "Core metabolism and mitochondrial function", "keywords": ["metabolic process", "mitochond", "glycolysis", "amino acid", "lipid metabolic", "oxidative phosphorylation"], "symbol_patterns": ["^(SLC|NDUF|ATP5|SDH|IDH|LDH|HK|PFK|CPT|ACAD)"]},
+        {"id": "membrane_trafficking_cytoskeleton", "description": "Membranes, trafficking and cytoskeleton", "keywords": ["vesicle-mediated transport", "membrane trafficking", "endocytosis", "cytoskeleton", "cell adhesion", "golgi"], "symbol_patterns": ["^(RAB|ARF|VAMP|SNAP|COP|ACT|TUB|MYO|ITGA|ITGB)"]},
+        {"id": "signal_transduction", "description": "Kinase, phosphatase and growth signaling", "keywords": ["signal transduction", "protein kinase", "protein phosphatase", "mapk cascade", "growth factor", "second messenger"], "symbol_patterns": ["^(MAPK|MAP2K|MAP3K|PIK3|AKT|RAF|RAS|PTPN|PRK)"]},
+        {"id": "cell_death_stress", "description": "Cell death and stress responses", "keywords": ["apoptotic", "cell death", "response to stress", "oxidative stress", "cell survival", "autophagy"], "symbol_patterns": ["^(BCL2|BIRC|CASP|ATG|SOD|GPX|NFE2L)"]},
+        {"id": "immune_inflammation", "description": "Immune and inflammatory processes", "keywords": ["immune response", "cytokine", "inflammatory", "interferon", "antigen presentation"], "symbol_patterns": ["^(HLA|IL[0-9]|TNF|NFKB|TLR|IRF)"]},
+        {"id": "other_uncertain", "description": "No reliable primary assignment", "keywords": [], "symbol_patterns": []}
+      ]
+    },
+    "T12": {
+      "public_objective": "Gene knockouts likely to make cancer cells more sensitive under activated NK-cell exposure.",
+      "modules": [
+        {"id": "antigen_presentation_interferon", "description": "MHC-I/antigen processing and interferon resistance", "keywords": ["antigen presentation", "major histocompatibility", "interferon", "mhc class", "peptide loading", "antigen processing"], "symbol_patterns": ["^(HLA|B2M$|TAP|TAPBP|NLRC5|JAK|STAT1$|IRF)"]},
+        {"id": "nk_ligands_immune_synapse", "description": "NK-recognition ligands and immune synapse", "keywords": ["natural killer cell", "immune synapse", "cell-cell recognition", "immune receptor", "cytotoxicity", "activating ligand"], "symbol_patterns": ["^(MICA|MICB|ULBP|PVR|NECTIN|ICAM|CD[0-9])"]},
+        {"id": "death_execution_survival", "description": "Granzyme/death-ligand execution and tumor survival", "keywords": ["apoptotic", "apoptosis", "cell death", "death receptor", "granzyme", "cell survival"], "symbol_patterns": ["^(BCL2|BIRC|CASP|FAS|TNFRSF10|CFLAR|SERPINB9)"]},
+        {"id": "checkpoint_immunosuppression", "description": "Checkpoint, adenosine and suppressive surface programs", "keywords": ["immune checkpoint", "immunosuppress", "adenosine", "prostaglandin", "negative regulation of immune", "immune evasion"], "symbol_patterns": ["^(CD274|PDCD1LG|CD47$|NT5E$|ENTPD1|ADORA|PTGS)"]},
+        {"id": "cytokine_inflammation_signaling", "description": "Cytokine, TNF/NF-kB and signal transduction", "keywords": ["cytokine", "inflammatory response", "tumor necrosis factor", "nf-kappa", "signal transduction", "protein kinase"], "symbol_patterns": ["^(IL[0-9]|TNF|NFKB|TRAF|MAPK|PIK3|AKT|PTPN)"]},
+        {"id": "glycocalyx_adhesion_trafficking", "description": "Glycan shielding, adhesion, ligand shedding and traffic", "keywords": ["glycosylation", "glycan", "cell adhesion", "membrane trafficking", "endocytosis", "metalloprotease", "integrin"], "symbol_patterns": ["^(GALNT|B4GALT|FUT|ST3GAL|MUC|ITGA|ITGB|RAB|ADAM|MMP)"]},
+        {"id": "stress_autophagy_lysosome", "description": "Stress defense, autophagy and lysosome", "keywords": ["autophagy", "lysosome", "response to stress", "oxidative stress", "unfolded protein", "protein folding"], "symbol_patterns": ["^(ATG|BECN|ULK|LAMP|HSP|DNAJ|SOD|GPX|NFE2L)"]},
+        {"id": "chromatin_lineage_transcription", "description": "Chromatin and lineage-state regulation", "keywords": ["chromatin", "histone", "transcription factor", "cell differentiation", "epigenetic", "gene expression"], "symbol_patterns": ["^(KDM|KMT|HDAC|HIST|SMAR|ARID|EZH|SOX|GATA|RUNX)"]},
+        {"id": "metabolism_mitochondria", "description": "Metabolism and mitochondrial fitness", "keywords": ["metabolic process", "mitochond", "glycolysis", "fatty acid", "amino acid", "oxidative phosphorylation"], "symbol_patterns": ["^(SLC|NDUF|ATP5|SDH|IDH|LDH|HK|PFK|CPT|ACAD)"]},
+        {"id": "cell_cycle_dna_repair", "description": "Cell cycle and DNA-damage tolerance", "keywords": ["cell cycle", "mitotic", "dna replication", "dna repair", "dna damage", "chromosome segregation"], "symbol_patterns": ["^(CDK|CCN[ABDE]|CDC|MCM|RAD|BRCA|FAN|CHEK|AURK|PLK)"]},
+        {"id": "other_uncertain", "description": "No reliable primary assignment", "keywords": [], "symbol_patterns": []}
+      ]
+    },
+    "T13": {
+      "public_objective": "Gene knockouts likely to alter a private phagocytosis phenotype.",
+      "modules": [
+        {"id": "actin_cytoskeleton_motility", "description": "Actin remodeling and engulfment mechanics", "keywords": ["actin cytoskeleton", "actin filament", "cell motility", "lamellipodium", "cytoskeletal organization", "engulfment"], "symbol_patterns": ["^(ACT|ACTR|ARPC|WAS|WAVE|WASF|RAC|CDC42|RHO|MYO|CFL)"]},
+        {"id": "phagosome_endosome_lysosome", "description": "Phagosome maturation, endosome and lysosome", "keywords": ["phagocytosis", "phagosome", "endosome", "lysosome", "lysosomal", "endosomal transport"], "symbol_patterns": ["^(LAMP|RAB5|RAB7|VPS|HOPS|CORVET|CTSD|CTSB|ATP6V)"]},
+        {"id": "phagocytic_receptors_opsonization", "description": "Phagocytic receptors, opsonization and immune recognition", "keywords": ["phagocytic receptor", "opsonization", "fc receptor", "complement receptor", "pattern recognition receptor", "immune receptor"], "symbol_patterns": ["^(FCGR|C3AR|C5AR|CR1$|ITGAM|ITGAX|TLR|CLEC|MERTK|AXL$)"]},
+        {"id": "membrane_trafficking_vesicle", "description": "Vesicle, membrane and secretory trafficking", "keywords": ["vesicle-mediated transport", "membrane trafficking", "exocytosis", "endocytosis", "golgi", "vesicle fusion"], "symbol_patterns": ["^(RAB|ARF|VAMP|SNAP|STX|COP|SEC|EXOC)"]},
+        {"id": "adhesion_integrin_matrix", "description": "Integrin adhesion and extracellular matrix interactions", "keywords": ["cell adhesion", "integrin", "extracellular matrix", "focal adhesion", "cell-matrix adhesion"], "symbol_patterns": ["^(ITGA|ITGB|TLN|FERMT|PXN|VCL|COL|LAMA|LAMB)"]},
+        {"id": "signaling_small_gtpase", "description": "Kinase and small-GTPase signal transduction", "keywords": ["signal transduction", "small gtpase", "protein kinase", "protein phosphatase", "mapk cascade", "calcium signaling"], "symbol_patterns": ["^(MAPK|MAP2K|MAP3K|PIK3|AKT|PRK|PTPN|RAC|RHO|RAS|ARHGEF|ARHGAP)"]},
+        {"id": "lipid_metabolism_membrane", "description": "Lipid handling and membrane composition", "keywords": ["lipid metabolic", "phospholipid", "cholesterol", "fatty acid", "membrane lipid", "sphingolipid"], "symbol_patterns": ["^(PLD|PLA2|PIK|DGK|SGMS|SPTLC|ACSL|LPCAT|ABCA|ABCG)"]},
+        {"id": "innate_inflammation", "description": "Innate immune and inflammatory programs", "keywords": ["innate immune", "inflammatory response", "cytokine", "interferon", "nf-kappa", "inflammasome"], "symbol_patterns": ["^(IL[0-9]|TNF|NFKB|TLR|IRF|NLR|MYD88|TRAF)"]},
+        {"id": "transcription_chromatin", "description": "Transcriptional and chromatin regulation", "keywords": ["transcription", "chromatin", "histone", "epigenetic", "gene expression", "cell differentiation"], "symbol_patterns": ["^(KDM|KMT|HDAC|HIST|SMAR|ARID|EZH|GATA|RUNX|CEBP)"]},
+        {"id": "cell_cycle_survival_stress", "description": "Cell cycle, survival and general stress", "keywords": ["cell cycle", "mitotic", "apoptotic", "cell survival", "response to stress", "dna repair"], "symbol_patterns": ["^(CDK|CCN[ABDE]|CDC|BCL2|BIRC|CASP|HSP|RAD|MCM)"]},
+        {"id": "other_uncertain", "description": "No reliable primary assignment", "keywords": [], "symbol_patterns": []}
+      ]
+    },
+    "T15": {
+      "public_objective": "Gene knockdowns likely to strongly reduce viability in a private cancer-cell context.",
+      "modules": [
+        {"id": "cell_cycle_mitosis", "description": "Cell-cycle, spindle and mitotic dependency", "keywords": ["cell cycle", "mitotic", "mitosis", "chromosome segregation", "spindle", "cytokinesis"], "symbol_patterns": ["^(CDK|CCN[ABDE]|CDC|AURK|PLK|CENP|KIF|MKI67)"]},
+        {"id": "dna_replication_repair", "description": "DNA replication and repair dependency", "keywords": ["dna replication", "dna repair", "dna damage", "replication fork", "genome stability", "double-strand break"], "symbol_patterns": ["^(MCM|POL[ADEN]|RAD|BRCA|FAN|CHEK|ATM$|ATR$|PARP)"]},
+        {"id": "transcription_chromatin", "description": "Transcriptional and chromatin dependency", "keywords": ["transcription", "chromatin", "histone", "epigenetic", "rna polymerase", "dna methylation"], "symbol_patterns": ["^(POLR|MED|TAF|KDM|KMT|HDAC|HIST|SMAR|ARID|EZH|BRD)"]},
+        {"id": "rna_splicing_translation", "description": "RNA processing, ribosome and translation dependency", "keywords": ["rna splicing", "mrna processing", "ribosome", "translation", "rna binding", "ribosomal"], "symbol_patterns": ["^(RPL|RPS|MRPL|MRPS|SRSF|HNRNP|DDX|EIF|EFT|SF3)"]},
+        {"id": "proteasome_ubiquitin_proteostasis", "description": "Proteasome, ubiquitin and protein-quality dependency", "keywords": ["proteasome", "ubiquitin", "protein degradation", "protein folding", "unfolded protein", "chaperone"], "symbol_patterns": ["^(PSM|UBE|UBR|CUL|HSP|DNAJ|VCP$|NEDD8)"]},
+        {"id": "metabolism_mitochondria", "description": "Metabolic and mitochondrial dependency", "keywords": ["metabolic process", "mitochond", "glycolysis", "amino acid", "lipid metabolic", "oxidative phosphorylation"], "symbol_patterns": ["^(SLC|NDUF|ATP5|SDH|IDH|LDH|HK|PFK|CPT|ACAD|GLS)"]},
+        {"id": "oncogenic_signal_transduction", "description": "RTK/RAS/MAPK/PI3K and oncogenic signaling", "keywords": ["signal transduction", "protein kinase", "growth factor", "mapk cascade", "pi3k", "ras protein signal", "oncogene"], "symbol_patterns": ["^(MAPK|MAP2K|MAP3K|PIK3|AKT|RAF|RAS|EGFR|ERBB|FGFR|PTPN|PRK)"]},
+        {"id": "apoptosis_survival", "description": "Apoptosis and anti-death dependency", "keywords": ["apoptotic", "apoptosis", "cell death", "cell survival", "anti-apoptotic", "death receptor"], "symbol_patterns": ["^(BCL2|BIRC|CASP|MCL1|XIAP|FAS|CFLAR)"]},
+        {"id": "membrane_trafficking_cytoskeleton", "description": "Membrane traffic and cytoskeletal dependency", "keywords": ["vesicle-mediated transport", "membrane trafficking", "endocytosis", "cytoskeleton", "golgi", "cell adhesion"], "symbol_patterns": ["^(RAB|ARF|VAMP|SNAP|COP|ACT|TUB|MYO|ITGA|ITGB)"]},
+        {"id": "immune_inflammation", "description": "Immune and inflammatory programs", "keywords": ["immune response", "cytokine", "inflammatory", "interferon", "antigen presentation", "nf-kappa"], "symbol_patterns": ["^(HLA|IL[0-9]|TNF|NFKB|TLR|IRF)"]},
+        {"id": "lineage_development", "description": "Lineage, differentiation and developmental dependency", "keywords": ["cell differentiation", "developmental process", "cell fate", "lineage", "stem cell", "organ development"], "symbol_patterns": ["^(SOX|GATA|RUNX|HOX|PAX|NKX|MYOD|NEUROD)"]},
+        {"id": "other_uncertain", "description": "No reliable primary assignment", "keywords": [], "symbol_patterns": []}
+      ]
+    }
+  }
+}

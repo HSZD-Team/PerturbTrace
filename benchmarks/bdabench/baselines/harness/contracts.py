@@ -40,8 +40,9 @@ class HarnessConfig:
     run_id: str
     strategy_version: str
     feedback_policy: FeedbackPolicy
+    feedback_seed: int
     web_search_enabled: bool = True
-    harness_version: str = "decoupled-harness-v0.1"
+    harness_version: str = "decoupled-harness-v0.2"
 
 
 @dataclass(frozen=True)
@@ -89,4 +90,3 @@ class OracleRole(Protocol):
         stale_observations: list[Observation] | None = None,
     ) -> list[Observation]:
         ...
-

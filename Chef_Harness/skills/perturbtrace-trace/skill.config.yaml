@@ -1,0 +1,17 @@
+name: perturbtrace-trace
+version: 2.1.0
+description: User-manifest trace audit for completed PerturbTrace harness runs
+
+entrypoint: scripts/run_trace_evaluation.py
+
+defaults:
+  judge_model: gpt-5.5
+  judge_reasoning_effort: medium
+  judge_workers: 4
+  double_code_fraction: 0.34
+  minimum_reliability_packets: 20
+
+slash:
+  aliases:
+    - /perturbtrace-trace
+    - $perturbtrace-trace

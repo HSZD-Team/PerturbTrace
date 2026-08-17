@@ -139,6 +139,16 @@ def format_observation_feedback(observations: list[Observation], batch_size: int
     return "\n".join(lines)
 
 
+def format_no_feedback(observations: list[Observation], batch_size: int) -> str:
+    completed_rounds = len(observations) // batch_size
+    return "\n".join([
+        "# Feedback",
+        "Outcome feedback is withheld by the no-feedback policy.",
+        f"- Previous submitted rounds: {completed_rounds}.",
+        "- No outcomes, scores, effects, ranks, or hit labels are available.",
+    ])
+
+
 def format_round_hit_feedback(observations: list[Observation], batch_size: int, hit_set: set[str]) -> str:
     if not observations:
         return ""

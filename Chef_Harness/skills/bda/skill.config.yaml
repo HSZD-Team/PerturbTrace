@@ -45,6 +45,7 @@ solver_skill: solver_skills/restricted-clean-gene-screen
 
 # After a successful run, Chef/Codex should call skills/bda-viz.
 post_run_skill: bda-viz
+optional_trace_audit_skill: perturbtrace-trace
 
 slash:
   aliases:
