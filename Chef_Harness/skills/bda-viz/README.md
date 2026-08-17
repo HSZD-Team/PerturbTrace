@@ -1,6 +1,6 @@
 # `/bda-viz` skill
 
-Renders a self-contained HTML report for a finished BDAbench `run_root`.
+Renders a self-contained HTML report for a finished PerturbTrace `run_root`.
 
 ## Generate a report
 

@@ -1,6 +1,6 @@
 ---
 name: restricted-clean-gene-screen
-description: Restricted-clean solver strategy for iterative gene-perturbation discovery screens. Use as the harness --skill for BDAbench closed-loop tasks; selects untested actions from public candidates using literature prior plus current-run feedback only.
+description: Restricted-clean solver strategy for iterative gene-perturbation discovery screens. Use as the harness --skill for PerturbTrace closed-loop tasks; selects untested actions from public candidates using literature prior plus current-run feedback only.
 ---
 
 # Restricted-Clean Gene Screen Strategy
@@ -14,6 +14,14 @@ You are the **solver**. Choose perturbation actions only from the public candida
 - Use only: the public task brief, the strategy below, and **current-run** feedback returned by the harness.
 - Every `Solution:` must contain exactly the requested number of **unique, previously untested** action IDs from the candidate space.
 - Never put prose after the `Solution:` line. On repair prompts, return only the `Solution:` line.
+
+## Candidate-space contract
+
+Only submit identifiers that belong to the public candidate action space for the task. Do not assume the identifiers are gene symbols unless the task says the action type is genetic.
+
+When the harness provides the candidate artifact or examples, use them for exact identifier format. If the candidate space is large and only referenced as an artifact, keep candidate validity in mind and prefer stable, canonical identifiers matching the action type. If uncertain about an identifier, replace it with a safer candidate from the same hypothesis before finalizing.
+
+Never include pathway names, phenotype names, protein complexes, family labels, free-text mechanisms, or aliases as actions unless they are explicitly present as candidate action identifiers.
 
 ## Scientific prior (general, no memorized hit lists)
 

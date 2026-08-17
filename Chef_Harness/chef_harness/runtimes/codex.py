@@ -58,7 +58,7 @@ class CodexRuntime:
         cmd.append("-")  # read prompt from stdin
 
         env = os.environ.copy()
-        # Ensure BDAbench imports resolve when the monitor shells out.
+        # Ensure PerturbTrace imports resolve when the monitor shells out.
         existing = env.get("PYTHONPATH", "")
         pkg = str(cwd)
         env["PYTHONPATH"] = pkg if not existing else f"{pkg}{os.pathsep}{existing}"

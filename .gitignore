@@ -4,5 +4,5 @@ __pycache__/
 .venv/
 .DS_Store
 Chef_Harness/.chef/
-benchmarks/bdabench/baselines/harness_runs/**
-!benchmarks/bdabench/baselines/harness_runs/.gitkeep
+benchmarks/perturbtrace/baselines/harness_runs/**
+!benchmarks/perturbtrace/baselines/harness_runs/.gitkeep

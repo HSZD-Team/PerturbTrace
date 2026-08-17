@@ -22,7 +22,7 @@ BANNER = f"""Chef_Harness MVP v{__version__}
 Workspace: {workspace_root()}
 
 Commands:
-  /bda <request>          Launch BDAbench monitor skill via Codex
+  /bda <request>          Launch PerturbTrace monitor skill via Codex
   run bda [options]       Same as /bda with flags
   viz <run_root>          Render HTML report via bda-viz skill
   help                    Show help
@@ -67,7 +67,7 @@ def _build_parser() -> argparse.ArgumentParser:
     _add_bda_flags(bda_p)
     bda_p.add_argument("prompt_words", nargs="*", help="User request text")
 
-    viz_p = sub.add_parser("viz", help="Render HTML report for a BDAbench run_root")
+    viz_p = sub.add_parser("viz", help="Render HTML report for a PerturbTrace run_root")
     viz_p.add_argument("run_root", type=Path, help="Path to harness run_root")
     viz_p.add_argument("-o", "--output", type=Path, default=None, help="Optional HTML output path")
 
@@ -155,9 +155,9 @@ def _cmd_run_bda(args: argparse.Namespace) -> int:
     if not user_text:
         task_label = args.task or "default task"
         if smoke is False:
-            user_text = f"Run a full BDAbench evaluation for task={task_label} (all rounds)."
+            user_text = f"Run a full PerturbTrace evaluation for task={task_label} (all rounds)."
         else:
-            user_text = f"Run a BDAbench 1-run smoke evaluation for task={task_label}."
+            user_text = f"Run a PerturbTrace 1-run smoke evaluation for task={task_label}."
     solver_skill = (
         resolve_workspace_path(args.solver_skill) if args.solver_skill else None
     )

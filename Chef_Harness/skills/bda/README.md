@@ -1,6 +1,6 @@
 # `/bda` skill (Skill_1)
 
-Eval-monitor skill for BDAbench decoupled harness. Designed to:
+Eval-monitor skill for PerturbTrace decoupled harness. Designed to:
 
 1. run inside native Codex skill system (`$bda` / `/skills`)
 2. later be launched by Chef_Harness via `/bda ...` with selectable runtime (`codex` default, also `pi` / `opencode`)

@@ -1,9 +1,9 @@
 ---
 name: bda-viz
-description: Render a local HTML report for a finished BDAbench harness run_root. Use after /bda or $bda completes, or when the user asks to visualize / open BDAbench results in a browser.
+description: Render a local HTML report for a finished PerturbTrace harness run_root. Use after /bda or $bda completes, or when the user asks to visualize / open PerturbTrace results in a browser.
 ---
 
-# /bda-viz — BDAbench Result Visualizer
+# /bda-viz — PerturbTrace Result Visualizer
 
 You produce a **self-contained HTML report** from an existing harness `run_root`, so the user can open it in a local browser.
 

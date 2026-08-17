@@ -1,11 +1,11 @@
-# BDAbench Decoupled Harness CLI
+# PerturbTrace Decoupled Harness CLI
 
-Run from the portable package root (`Changjie_files/bdabench_decoupled_harness` in this workspace), so the `BDAbench` module resolves.
+Run from the portable package root (`Changjie_files/perturbtrace_decoupled_harness` in this workspace), so the `PerturbTrace` module resolves.
 
 ## Commands
 
 ```bash
-python -m BDAbench.baselines.harness.cli init-run \
+python -m PerturbTrace.baselines.harness.cli init-run \
   --run-id <run_id> \
   --strategy-version <strategy_version> \
   --task-profile <task_manifest.yaml> \
@@ -13,23 +13,23 @@ python -m BDAbench.baselines.harness.cli init-run \
   --output-dir <output_dir> \
   --feedback-policy true_feedback
 
-python -m BDAbench.baselines.harness.cli prepare-round \
+python -m PerturbTrace.baselines.harness.cli prepare-round \
   --run-root <run_root> \
   --round-index <0_based>
 
-python -m BDAbench.baselines.harness.cli process-response \
+python -m PerturbTrace.baselines.harness.cli process-response \
   --run-root <run_root> \
   --round-index <0_based> \
   --raw-response <solver_response.txt>
 
-python -m BDAbench.baselines.harness.cli finalize-run \
+python -m PerturbTrace.baselines.harness.cli finalize-run \
   --run-root <run_root>
 ```
 
 Smoke / incomplete finalize only when explicitly allowed:
 
 ```bash
-python -m BDAbench.baselines.harness.cli finalize-run \
+python -m PerturbTrace.baselines.harness.cli finalize-run \
   --run-root <run_root> \
   --allow-incomplete
 ```
