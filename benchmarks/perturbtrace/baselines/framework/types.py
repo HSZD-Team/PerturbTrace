@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Literal
 
 
-FeedbackPolicy = Literal["true_feedback", "no_feedback", "random_feedback", "stale_feedback"]
+FeedbackPolicy = Literal["true_feedback", "no_feedback", "random_feedback"]
 LeakageLabel = Literal[
     "clean_general_knowledge",
     "web_supported_but_not_answer_table",

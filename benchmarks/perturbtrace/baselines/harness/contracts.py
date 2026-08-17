@@ -87,6 +87,5 @@ class OracleRole(Protocol):
         actions: list[str],
         feedback_policy: FeedbackPolicy,
         round_index: int,
-        stale_observations: list[Observation] | None = None,
     ) -> list[Observation]:
         ...

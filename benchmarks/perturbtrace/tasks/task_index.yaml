@@ -25,7 +25,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_CART_CRISPRa_exhaustion_feedback_decision_v0
   source_id: S07_bda_steinhart_crispra_gd2_d22
@@ -48,7 +47,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_cart_exposure_resistance_crispr_screen_v0
   source_id: S66_hagel_cart_exposure_hupt3_crispr
@@ -71,7 +69,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_cart_exposure_resistance_kp4_crispr_screen_v0
   source_id: S67_hagel_cart_exposure_kp4_crispr
@@ -94,7 +91,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_cell_painting_morphology_v0
   source_id: S16_jump_cell_painting
@@ -117,7 +113,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_choline_recycling_feedback_decision_v0
   source_id: S06_bda_scharenberg22_choline
@@ -140,7 +135,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_crispr_selection_human_cells_v0
   source_id: S28_wang_crispr_human_cells
@@ -163,7 +157,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_crispri_toxin_resistant_response_v0
   source_id: S46_gilbert_crispri_toxin_response
@@ -186,7 +179,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_crispri_toxin_sensitive_response_v0
   source_id: S46_gilbert_crispri_toxin_response
@@ -209,7 +201,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_depmap_single_line_dependency_v0
   source_id: S09_depmap_achilles
@@ -232,7 +223,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_gdsc_drug_response_v0
   source_id: S14_gdsc
@@ -255,7 +245,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_hiv_resistance_crispr_screen_v0
   source_id: S31_montoya_hiv_resistance_crispr
@@ -278,7 +267,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_IFNG_feedback_decision_v0
   source_id: S01_bda_schmidt_ifng
@@ -301,7 +289,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_IL2_feedback_decision_v0
   source_id: S02_bda_schmidt_il2
@@ -324,7 +311,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_nk_cell_exposure_crispr_v0
   source_id: S26_zhuang_nk_cell_crispr
@@ -347,7 +333,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_phagocytosis_crispr_screen_v0
   source_id: S27_haney_phagocytosis_crispr
@@ -370,7 +355,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_primary_tcell_function_screen_v0
   source_id: S25_shifrut_primary_tcell_crispr
@@ -393,7 +377,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_project_drive_dependency_v0
   source_id: S11_project_drive_rnai
@@ -416,7 +399,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_tau_absolute_feedback_decision_v0
   source_id: S04_bda_sanchez21_tau_absolute
@@ -439,7 +421,6 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle
 - task_id: C3_tau_decrease_feedback_decision_v0
   source_id: S05_bda_sanchez21_tau_down
@@ -462,5 +443,4 @@ tasks:
   - true_feedback
   - no_feedback
   - random_feedback
-  - stale_feedback
   oracle_mode: external_hidden_oracle

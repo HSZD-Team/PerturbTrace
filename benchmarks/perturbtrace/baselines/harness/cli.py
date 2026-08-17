@@ -330,7 +330,7 @@ def main() -> None:
     init_p.add_argument("--task-profile", default=str(DEFAULT_TASK_PROFILE))
     init_p.add_argument("--skill", required=True)
     init_p.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
-    init_p.add_argument("--feedback-policy", choices=["true_feedback", "no_feedback", "random_feedback", "stale_feedback"], default="true_feedback")
+    init_p.add_argument("--feedback-policy", choices=["true_feedback", "no_feedback", "random_feedback"], default="true_feedback")
     init_p.add_argument("--feedback-seed", type=int)
     init_p.add_argument("--no-web-search", action="store_true")
     init_p.add_argument("--force", action="store_true")
