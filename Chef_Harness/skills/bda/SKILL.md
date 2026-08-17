@@ -1,9 +1,9 @@
 ---
 name: bda
-description: Run BDAbench gene-screening evals as an eval monitor via the decoupled harness. Use when the user invokes /bda or $bda, asks for BDAbench / gene-screen evaluation, or wants a local 1-run harness demo with run_root and RUN_SUMMARY returned.
+description: Run PerturbTrace gene-screening evals as an eval monitor via the decoupled harness. Use when the user invokes /bda or $bda, asks for PerturbTrace / gene-screen evaluation, or wants a local 1-run harness demo with run_root and RUN_SUMMARY returned.
 ---
 
-# /bda — BDAbench Eval Monitor
+# /bda — PerturbTrace Eval Monitor
 
 You are the **eval monitor**, not the solver and not the harness core.
 
@@ -15,7 +15,7 @@ Read before acting:
 
 ## Goal
 
-From the user prompt, run one BDAbench evaluation session end-to-end through the **decoupled harness CLI**, then report:
+From the user prompt, run one PerturbTrace evaluation session end-to-end through the **decoupled harness CLI**, then report:
 
 - absolute `run_root`
 - `RUN_SUMMARY.json` path
@@ -29,12 +29,12 @@ Parse the user request into:
 
 | Slot | Default (smoke) | Notes |
 |---|---|---|
-| `task` | `c3_cart_crispra_exhaustion_feedback_decision_v0` | Resolve via `tasks/task_index.yaml` / task folder under BDAbench package |
+| `task` | `c3_cart_crispra_exhaustion_feedback_decision_v0` | Resolve via `tasks/task_index.yaml` / task folder under PerturbTrace package |
 | `runtime` / selector harness | `codex` | May be `pi` or `opencode`; this is who runs **this monitor skill** |
 | `solver` | Codex app/session, model `gpt-5.5`, effort `xhigh` | Fresh thread; **solver must not use project**; **solver must not be launched via `codex exec`** |
 | `solver_skill` | required external dir with `SKILL.md` | Strategy skill for the solver, not this `/bda` skill |
 | `rounds` | task manifest value | For smoke demo, 1-run / allow incomplete only if user asks |
-| `package_root` | nearest BDAbench portable package | Directory that contains `BDAbench/`, `baselines/`, `tasks/` |
+| `package_root` | nearest PerturbTrace portable package | Directory that contains `PerturbTrace/`, `baselines/`, `tasks/` |
 
 If `solver_skill` is missing, stop and ask for a path (or create one only when the user explicitly wants a strategy skill drafted).
 
@@ -43,8 +43,8 @@ Natural-language examples that should trigger this skill:
 - Chinese: `/bda 帮我基于这个文件夹里的文件去做基因筛选`
 - English: `/bda Help me run a gene-screen evaluation based on the files in this folder`
 - English: `$bda 1-run demo on cart_crispra_exhaustion`
-- Chinese: plain `"用 decoupled harness 跑一个 BDAbench 评测"`
-- English: plain `"Run a BDAbench evaluation with the decoupled harness"`
+- Chinese: plain `"用 decoupled harness 跑一个 PerturbTrace 评测"`
+- English: plain `"Run a PerturbTrace evaluation with the decoupled harness"`
 
 ## Runtime Selection
 
@@ -52,7 +52,7 @@ Natural-language examples that should trigger this skill:
 
 - Default: `codex`
 - Also supported later: `pi`, `opencode`
-- Benchmark engine stays `bdabench` (decoupled harness CLI)
+- Benchmark engine stays `perturbtrace` (decoupled harness CLI)
 
 If Chef_Harness launched you, honor its `--harness` / config override. If native Codex invoked `$bda`, you are already on the `codex` runtime.
 
@@ -61,7 +61,7 @@ If Chef_Harness launched you, honor its `--harness` / config override. If native
 Two different “exec” ideas — do not confuse them:
 
 1. **Monitor shell is allowed and required.** You SHOULD use local shell / command execution to run  
-   `python -m BDAbench.baselines.harness.cli ...`, read artifacts, and summarize results.
+   `python -m PerturbTrace.baselines.harness.cli ...`, read artifacts, and summarize results.
 2. **Solver transport must not use `codex exec`.** Launch the solver as a fresh Codex app/session thread (no project). Do not use `codex exec` as the solver runner.
 
 If the user says “不要用 exec” / “do not use exec”, interpret it as (2), not (1).
@@ -70,7 +70,7 @@ If the user says “不要用 exec” / “do not use exec”, interpret it as (
 
 You may:
 
-- call BDAbench harness CLI via local shell (`init-run` → `prepare-round` → `process-response` → `finalize-run`)
+- call PerturbTrace harness CLI via local shell (`init-run` → `prepare-round` → `process-response` → `finalize-run`)
 - open / resume the **solver** conversation for prompt text only
 - inspect completed `run_root` artifacts and summarize them
 
@@ -83,7 +83,7 @@ You must not:
 
 ## Monitor Loop (minimal)
 
-Work from `package_root` so `python -m BDAbench.baselines.harness.cli` resolves.
+Work from `package_root` so `python -m PerturbTrace.baselines.harness.cli` resolves.
 
 1. `init-run` with explicit `--task-profile`, `--skill`, `--output-dir`, `--strategy-version`, `--run-id`
 2. Capture printed `run_root`

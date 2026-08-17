@@ -1,0 +1,83 @@
+﻿task_id: C3_crispr_selection_human_cells_v0
+source_id: S28_wang_crispr_human_cells
+title: Wang genetic screens in human cells using CRISPR-Cas9
+classification:
+  primary_class: C3_feedback_decision_agent
+  scientific_decision_object: next_round_perturbation_selection
+  autonomy_level: closed_loop_decision_maker
+data:
+  data_name: S28_wang_crispr_human_cells
+  candidate_table: PerturbTrace/tasks/c3_crispr_selection_human_cells_v0/hidden/oracle_scores.csv
+  hit_set: PerturbTrace/tasks/c3_crispr_selection_human_cells_v0/hidden/hit_set.npy
+  public_candidate_actions: PerturbTrace/tasks/c3_crispr_selection_human_cells_v0/public/candidate_actions.csv
+  public_task_brief: PerturbTrace/tasks/c3_crispr_selection_human_cells_v0/public_task_brief.md
+  full_provenance: PerturbTrace/tasks/c3_crispr_selection_human_cells_v0/provenance/full_provenance.md
+  candidate_id_column: action_id
+  score_column: score
+  candidate_count_verified: 7114
+  hit_count_verified: 321
+  normalization:
+    input_table: PerturbTrace/data_sources/raw_external/S28_wang_crispr_human_cells/wang_kbm7_crispr_survival_gene_scores.csv
+    matrix_mode: long
+    context_key: BioGRID_ORCS_Wang2014_KBM7_CRISPR_survival_gene_score
+    action_column: gene
+    score_column: score
+    hit_column: hit_value
+    score_sign: as_is
+    hit_mode: threshold_gt
+    hit_percent: 5.0
+    hit_threshold: 1.30103
+hidden_oracle:
+  type: action_score_table
+  default_hit_rule: top selected phenotype regulators
+  oracle_score: gene-level enrichment/depletion score
+  dataset_identity_hidden: true
+public_action_space:
+  visibility: public_ids
+  delivery: artifact_reference
+task_semantics:
+  agent_safe_brief: Select gene knockouts likely to strongly affect a private selectable
+    human-cell phenotype.
+  biological_system: human cells
+  perturbation_operation: gene knockout
+  action_type: gene
+  readout: survival/enrichment under selection
+  feedback_value: tested gene score
+budget:
+  rounds: 5
+  batch_size: 128
+  total_slots: 640
+feedback_policies:
+- true_feedback
+- no_feedback
+- random_feedback
+- stale_feedback
+metrics:
+  primary:
+  - top_effect_recall
+  - auc_hdc
+  - feedback_delta_auc
+  process:
+  - invalid_action_rate
+  - duplicate_action_rate
+  - parse_failure_count
+  - batch_fill_failure_rate
+  - trace_completeness
+leakage_controls:
+  oracle_mode: external_hidden_oracle
+  forbidden_to_agent:
+  - hidden/oracle_scores.csv
+  - hidden/hit_set.npy
+  - source_id
+  - dataset_identity
+  - release_accession_or_result_handle
+  - untested_scores
+  - untested_ranks
+  - hit_threshold
+implementation_notes: Use as early CRISPR screen benchmark after table verification.
+benchmark_selection:
+  status: active
+  rationale: included_or_accepted_in_review_feedback
+  updated_from_review: '2026-06-15'
+  role: review_specified
+

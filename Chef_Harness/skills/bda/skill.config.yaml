@@ -17,10 +17,10 @@ monitor:
   reasoning_effort: high
 
 # Deterministic eval engine behind the monitor.
-benchmark: bdabench
+benchmark: perturbtrace
 
 # Relative to Chef_Harness/ (this product root), unless overridden at launch.
-package_root: ../benchmarks/bdabench
+package_root: ../benchmarks/perturbtrace
 
 defaults:
   task_slug: c3_cart_crispra_exhaustion_feedback_decision_v0

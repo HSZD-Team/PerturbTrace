@@ -156,7 +156,7 @@ and the references/ in the same directory.
 - solver_skill: {solver_skill}
 - strategy_version: {strategy_version}
 - output_dir: {output_dir}
-- monitor: must use a local shell to run `PYTHONPATH=. python -m BDAbench.baselines.harness.cli ...`
+- monitor: must use a local shell to run `PYTHONPATH=. python -m PerturbTrace.baselines.harness.cli ...`
 - solver: open a new Codex thread/task with model {solver_model} and reasoning {solver_effort}; solver must not use a project; solver must not be launched via `codex exec`
 - {smoke_line}
 

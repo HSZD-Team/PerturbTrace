@@ -1,0 +1,85 @@
+﻿task_id: C3_cart_exposure_resistance_crispr_screen_v0
+source_id: S66_hagel_cart_exposure_hupt3_crispr
+title: Hagel KR (2022) BioGRID ORCS Screen 1953 hidden-oracle task
+classification:
+  primary_class: C3_feedback_decision_agent
+  scientific_decision_object: next_round_perturbation_selection
+  autonomy_level: closed_loop_decision_maker
+data:
+  data_name: S66_hagel_cart_exposure_hupt3_crispr
+  candidate_table: PerturbTrace/tasks/c3_cart_exposure_resistance_crispr_screen_v0/hidden/oracle_scores.csv
+  hit_set: PerturbTrace/tasks/c3_cart_exposure_resistance_crispr_screen_v0/hidden/hit_set.npy
+  public_candidate_actions: PerturbTrace/tasks/c3_cart_exposure_resistance_crispr_screen_v0/public/candidate_actions.csv
+  public_task_brief: PerturbTrace/tasks/c3_cart_exposure_resistance_crispr_screen_v0/public_task_brief.md
+  full_provenance: PerturbTrace/tasks/c3_cart_exposure_resistance_crispr_screen_v0/provenance/full_provenance.md
+  candidate_id_column: action_id
+  score_column: score
+  candidate_count_verified: 20079
+  hit_count_verified: 884
+  normalization:
+    input_table: D:/internwork/medclaw/PerturbTrace/data_sources/raw_external/S66_hagel_cart_exposure_hupt3_crispr/hagel_cart_exposure_hupt3_crispr_screen1953_scores.csv
+    matrix_mode: long
+    context_key: BioGRID_ORCS_Screen_1953_hagel_cart_exposure_hupt3_crispr
+    action_column: gene
+    score_column: score
+    hit_column: hit_value
+    score_sign: as_is
+    hit_mode: threshold_gt
+    hit_percent: 5.0
+    hit_threshold: 0.5
+hidden_oracle:
+  type: action_score_table
+  default_hit_rule: BioGRID ORCS author hit labels from the full-size static screen
+  oracle_score: gene-level Log2FC from BioGRID ORCS Screen 1953
+  dataset_identity_hidden: true
+public_action_space:
+  visibility: public_ids
+  delivery: artifact_reference
+task_semantics:
+  agent_safe_brief: Select gene knockouts likely to alter a private engineered immune-cell
+    exposure phenotype.
+  biological_system: cancer cell model under a private engineered immune-cell exposure
+  perturbation_operation: gene knockout
+  action_type: gene
+  readout: immune-cell exposure resistance phenotype
+  feedback_value: tested gene immune-exposure response score
+budget:
+  rounds: 5
+  batch_size: 128
+  total_slots: 640
+feedback_policies:
+- true_feedback
+- no_feedback
+- random_feedback
+- stale_feedback
+metrics:
+  primary:
+  - top_effect_recall
+  - auc_hdc
+  - feedback_delta_auc
+  process:
+  - invalid_action_rate
+  - duplicate_action_rate
+  - parse_failure_count
+  - batch_fill_failure_rate
+  - trace_completeness
+leakage_controls:
+  oracle_mode: external_hidden_oracle
+  forbidden_to_agent:
+  - hidden/oracle_scores.csv
+  - hidden/hit_set.npy
+  - source_id
+  - dataset_identity
+  - release_accession_or_result_handle
+  - untested_scores
+  - untested_ranks
+  - hit_threshold
+implementation_notes: Use SCORE.1 as feedback score and ORCS HIT labels as hidden
+  hits. Public materials hide source identity, exact condition, screen id, score table,
+  hit labels, thresholds, and ranks.
+benchmark_selection:
+  status: active
+  rationale: selected_ok_in_phenotype_availability_sheet
+  updated_from_review: '2026-06-15'
+  role: excel_ok
+

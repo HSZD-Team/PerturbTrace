@@ -1,4 +1,4 @@
-# BDAbench Process-Edge Audit Protocol v2.0
+# PerturbTrace Process-Edge Audit Protocol v2.0
 
 Frozen on 2026-07-20 before v2 semantic coding. This retrospective audit reads completed run artifacts only and does not rerun experiments or modify run roots.
 

@@ -156,7 +156,7 @@ def resolve_reference(raw_value: str, task_manifest: Path) -> Path:
     raw = Path(raw_value)
     package_root = find_package_root(task_manifest)
     candidates = [raw, package_root / raw, task_manifest.parent / raw, task_manifest.parent / "hidden" / raw.name]
-    if raw.parts and raw.parts[0] == "BDAbench":
+    if raw.parts and raw.parts[0] == "PerturbTrace":
         candidates.insert(1, package_root / Path(*raw.parts[1:]))
     for candidate in candidates:
         if candidate.exists():

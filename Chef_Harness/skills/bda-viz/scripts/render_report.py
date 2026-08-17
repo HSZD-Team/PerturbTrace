@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render a self-contained HTML report for a BDAbench harness run_root."""
+"""Render a self-contained HTML report for a PerturbTrace harness run_root."""
 
 from __future__ import annotations
 
@@ -541,8 +541,8 @@ def render_html(data: dict[str, Any]) -> str:
 <body>
   <div class="wrap">
     <header class="hero">
-      <div class="eyebrow">BDAbench · run report</div>
-      <h1>{_esc(summary.get("run_id", "BDAbench run"))}</h1>
+      <div class="eyebrow">PerturbTrace · run report</div>
+      <h1>{_esc(summary.get("run_id", "PerturbTrace run"))}</h1>
       <div class="meta-list">
         <div class="meta-row">
           <div class="meta-label">Task</div>

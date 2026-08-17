@@ -1,6 +1,6 @@
 ---
 name: restricted-clean-gene-screen
-description: Restricted-clean solver strategy for iterative gene-perturbation discovery screens. Use as the harness --skill for BDAbench closed-loop tasks; selects untested actions from public candidates using literature prior plus current-run feedback only.
+description: Restricted-clean solver strategy for iterative gene-perturbation discovery screens. Use as the harness --skill for PerturbTrace closed-loop tasks; selects untested actions from public candidates using literature prior plus current-run feedback only.
 ---
 
 # Restricted-Clean Gene Screen Strategy

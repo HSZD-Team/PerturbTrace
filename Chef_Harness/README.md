@@ -1,14 +1,14 @@
 # Chef_Harness
 
-Local launcher for PerturbTrace BDAbench evaluations.
+Local launcher for PerturbTrace PerturbTrace evaluations.
 
-Chef starts a **monitor** session (default runtime: Codex), drives the portable BDAbench decoupled harness CLI, then recovers `run_root` and renders an HTML report via `bda-viz`.
+Chef starts a **monitor** session (default runtime: Codex), drives the portable PerturbTrace decoupled harness CLI, then recovers `run_root` and renders an HTML report via `bda-viz`.
 
 ## Layout
 
 ```text
 PerturbTrace/
-  benchmarks/bdabench/     # portable BDAbench engine + tasks
+  benchmarks/perturbtrace/     # portable PerturbTrace engine + tasks
   Chef_Harness/            # this folder
     chef_harness/          # Python CLI package
     skills/
@@ -21,7 +21,7 @@ PerturbTrace/
 ## Prerequisites
 
 - Python 3.10+
-- BDAbench Python deps (from `../benchmarks/bdabench/requirements.txt`): `numpy`, `pandas`, `pyyaml`
+- PerturbTrace Python deps (from `../benchmarks/perturbtrace/requirements.txt`): `numpy`, `pandas`, `pyyaml`
 - [Codex CLI](https://github.com/openai/codex) on `PATH` (for real runs; not needed for `--dry-run`)
 - Enough Codex usage quota for monitor + solver calls
 
@@ -31,7 +31,7 @@ From this directory (`PerturbTrace/Chef_Harness`):
 
 ```bash
 python -m pip install -e .
-python -m pip install -r ../benchmarks/bdabench/requirements.txt
+python -m pip install -r ../benchmarks/perturbtrace/requirements.txt
 ```
 
 Check:
@@ -120,7 +120,7 @@ Notes:
 
 ### Install `bda` in the Codex app
 
-You can run BDAbench without the `chef` CLI by installing the `bda` skill into Codex, then invoking `$bda` inside a Codex session.
+You can run PerturbTrace without the `chef` CLI by installing the `bda` skill into Codex, then invoking `$bda` inside a Codex session.
 
 #### 1) Link the skill into Codex
 
@@ -149,14 +149,14 @@ In Codex, run `/skills` (or the skills picker) and confirm `bda` appears.
 
 #### 2) Invoke `$bda` to run a benchmark
 
-Use absolute paths for `solver_skill` and the BDAbench package root.
+Use absolute paths for `solver_skill` and the PerturbTrace package root.
 
 Example smoke (1 round) — Chinese:
 
 ```text
 $bda 用 decoupled harness 演示一个 1-run 实际评测流程。
 task 选 c3_cart_crispra_exhaustion_feedback_decision_v0。
-monitor 必须用本地 shell，在 /ABS/PATH/to/PerturbTrace/benchmarks/bdabench 下调用 PYTHONPATH=. python -m BDAbench.baselines.harness.cli。
+monitor 必须用本地 shell，在 /ABS/PATH/to/PerturbTrace/benchmarks/perturbtrace 下调用 PYTHONPATH=. python -m PerturbTrace.baselines.harness.cli。
 solver 用 Codex 新线程，模型 gpt-5.5，reasoning xhigh；solver 不使用项目；solver 不要用 codex exec 启动。
 solver_skill=/ABS/PATH/to/PerturbTrace/Chef_Harness/solver_skills/restricted-clean-gene-screen
 允许 finalize --allow-incomplete（完成第 1 轮即可）。
@@ -168,7 +168,7 @@ Example smoke (1 round) — English:
 ```text
 $bda Use the decoupled harness to demonstrate a 1-run evaluation.
 task: c3_cart_crispra_exhaustion_feedback_decision_v0
-monitor must use local shell and run PYTHONPATH=. python -m BDAbench.baselines.harness.cli under /ABS/PATH/to/PerturbTrace/benchmarks/bdabench.
+monitor must use local shell and run PYTHONPATH=. python -m PerturbTrace.baselines.harness.cli under /ABS/PATH/to/PerturbTrace/benchmarks/perturbtrace.
 solver: open a new Codex thread with model gpt-5.5 and reasoning xhigh; solver must not use project; solver must not be launched via codex exec.
 solver_skill=/ABS/PATH/to/PerturbTrace/Chef_Harness/solver_skills/restricted-clean-gene-screen
 Allow finalize --allow-incomplete (finishing round 1 is enough).
@@ -178,8 +178,8 @@ When done, report run_root, a RUN_SUMMARY summary, and call $bda-viz to generate
 Example full run (all rounds) — Chinese:
 
 ```text
-$bda 对 task=c3_il2_feedback_decision_v0 跑完整 BDAbench 评测（全部 rounds）。
-monitor 必须用本地 shell，在 /ABS/PATH/to/PerturbTrace/benchmarks/bdabench 下调用 PYTHONPATH=. python -m BDAbench.baselines.harness.cli。
+$bda 对 task=c3_il2_feedback_decision_v0 跑完整 PerturbTrace 评测（全部 rounds）。
+monitor 必须用本地 shell，在 /ABS/PATH/to/PerturbTrace/benchmarks/perturbtrace 下调用 PYTHONPATH=. python -m PerturbTrace.baselines.harness.cli。
 solver 用 Codex 新线程，模型 gpt-5.5，reasoning xhigh；solver 不使用项目；solver 不要用 codex exec 启动。
 solver_skill=/ABS/PATH/to/PerturbTrace/Chef_Harness/solver_skills/restricted-clean-gene-screen
 不要使用 --allow-incomplete。
@@ -189,8 +189,8 @@ solver_skill=/ABS/PATH/to/PerturbTrace/Chef_Harness/solver_skills/restricted-cle
 Example full run (all rounds) — English:
 
 ```text
-$bda Run a full BDAbench evaluation for task=c3_il2_feedback_decision_v0 (all rounds).
-monitor must use local shell and run PYTHONPATH=. python -m BDAbench.baselines.harness.cli under /ABS/PATH/to/PerturbTrace/benchmarks/bdabench.
+$bda Run a full PerturbTrace evaluation for task=c3_il2_feedback_decision_v0 (all rounds).
+monitor must use local shell and run PYTHONPATH=. python -m PerturbTrace.baselines.harness.cli under /ABS/PATH/to/PerturbTrace/benchmarks/perturbtrace.
 solver: open a new Codex thread with model gpt-5.5 and reasoning xhigh; solver must not use project; solver must not be launched via codex exec.
 solver_skill=/ABS/PATH/to/PerturbTrace/Chef_Harness/solver_skills/restricted-clean-gene-screen
 Do not use --allow-incomplete.

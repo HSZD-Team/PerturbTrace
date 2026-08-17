@@ -6,9 +6,9 @@
 
 - [ ] 本机已安装并可打开 Codex（CLI 或 IDE）
 - [ ] 工作区能访问 portable 包：
-  `PerturbTrace/benchmarks/bdabench`
+  `PerturbTrace/benchmarks/perturbtrace`
 - [ ] Python 能在该包根目录执行：
-  `python -m BDAbench.baselines.harness.cli --help`
+  `python -m PerturbTrace.baselines.harness.cli --help`
 - [ ] 已准备好一个 **solver strategy skill** 目录（内含 `SKILL.md`）  
   本仓库默认：
   `solver_skills/restricted-clean-gene-screen`  
@@ -45,13 +45,13 @@ ln -sfn "$(pwd)/skills/bda" ~/.agents/skills/bda
 
 1. 打开 Codex
 2. 把 cwd 设到：
-   `PerturbTrace/benchmarks/bdabench`
+   `PerturbTrace/benchmarks/perturbtrace`
 3. 输入 `/skills`（或等价技能列表）
 
 检查：
 
 - [ ] 列表里出现 `bda`
-- [ ] description 提到 BDAbench / gene-screen / eval monitor 一类语义
+- [ ] description 提到 PerturbTrace / gene-screen / eval monitor 一类语义
 
 若没有：检查 symlink、文件名是否恰好为 `SKILL.md`、frontmatter 是否含 `name` / `description`，然后重启 Codex。
 
@@ -97,7 +97,7 @@ Report the final run_root and RUN_SUMMARY.
 ```text
 $bda 用 decoupled harness 演示一个 1-run 实际评测流程。
 task 选 c3_cart_crispra_exhaustion_feedback_decision_v0。
-monitor 必须用本地 shell 调用 python -m BDAbench.baselines.harness.cli。
+monitor 必须用本地 shell 调用 python -m PerturbTrace.baselines.harness.cli。
 solver 用 Codex 新线程，模型 gpt-5.5，reasoning xhigh；solver 不使用项目；solver 不要用 codex exec 启动。
 solver_skill=<SOLVER_SKILL>
 允许 finalize --allow-incomplete（只要完成第 1 轮交卷即可）。
@@ -112,7 +112,7 @@ solver_skill=<SOLVER_SKILL>
 ```text
 $bda Use the decoupled harness to demonstrate a real 1-run evaluation.
 Task: c3_cart_crispra_exhaustion_feedback_decision_v0.
-Monitor must use local shell to run: python -m BDAbench.baselines.harness.cli
+Monitor must use local shell to run: python -m PerturbTrace.baselines.harness.cli
 Solver: open a new Codex thread, model gpt-5.5, reasoning xhigh; solver must not use a project; do not launch solver via codex exec.
 solver_skill=<SOLVER_SKILL>
 Allow finalize --allow-incomplete (finishing round-1 submission is enough).
@@ -123,14 +123,14 @@ When done, report:
 ```
 
 工作目录请设为 / Set cwd to：
-`PerturbTrace/benchmarks/bdabench`
+`PerturbTrace/benchmarks/perturbtrace`
 （或在命令里 `cd` 到该目录后再跑 CLI / or `cd` there before running the CLI）。
 
 把 `<SOLVER_SKILL>` 换成真实绝对路径 / replace `<SOLVER_SKILL>` with a real absolute path。
 
 ### 4.1 调度是否正确
 
-- [ ] 调用了 `python -m BDAbench.baselines.harness.cli init-run ...`
+- [ ] 调用了 `python -m PerturbTrace.baselines.harness.cli init-run ...`
 - [ ] `init-run` 显式传了 `--task-profile` `--skill` `--output-dir` `--strategy-version` `--run-id`
 - [ ] 捕获到 `run_root`
 - [ ] 调用了 `prepare-round --round-index 0`

@@ -5,7 +5,7 @@ description: Audit completed PerturbTrace harness run roots with independent tra
 
 # PerturbTrace Trace Evaluation
 
-Evaluate only completed BDAbench/PerturbTrace harness runs supplied by the
+Evaluate only completed PerturbTrace/PerturbTrace harness runs supplied by the
 user. This skill reads the run artifacts without modifying them. It is not a
 benchmark launcher and it must never create, resume, or infer a formal run
 panel.
